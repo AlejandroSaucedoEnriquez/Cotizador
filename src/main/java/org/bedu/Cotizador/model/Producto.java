@@ -9,26 +9,34 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "productos")
+public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = false)
-    private String apellido;
+    @Column
+    private String sku;
 
     @Column(nullable = false)
-    private String direccion;
+    private double precio;
 
     @Column(nullable = false)
-    private String email;
+    private int stock;
 
     @Column(nullable = false)
-    private String telefono;
+    private String descripcion;
 
+    @Column(nullable = false)
+    private String categoria;
+
+    @Column(nullable = false)
+    private String marca;
+
+    @Column(nullable = false)
+    private String modelo;
 }
