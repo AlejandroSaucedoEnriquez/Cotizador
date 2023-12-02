@@ -1,7 +1,7 @@
 package org.bedu.Cotizador.mapper;
 
 import org.bedu.Cotizador.dto.ProductoDTO;
-import org.bedu.Cotizador.dto.CreateProductoDTO;
+import org.bedu.Cotizador.dto.createDTO.CreateProductoDTO;
 import org.bedu.Cotizador.model.Producto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

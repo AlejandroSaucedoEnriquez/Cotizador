@@ -2,7 +2,7 @@ package org.bedu.Cotizador.controller;
 
 import java.util.List;
 import org.bedu.Cotizador.dto.ClienteDTO;
-import org.bedu.Cotizador.dto.CreateClienteDTO;
+import org.bedu.Cotizador.dto.createDTO.CreateClienteDTO;
 import org.bedu.Cotizador.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

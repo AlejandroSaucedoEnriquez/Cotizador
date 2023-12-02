@@ -1,7 +1,7 @@
 package org.bedu.Cotizador.service;
 
 import org.bedu.Cotizador.dto.ClienteDTO;
-import org.bedu.Cotizador.dto.CreateClienteDTO;
+import org.bedu.Cotizador.dto.createDTO.CreateClienteDTO;
 import org.bedu.Cotizador.mapper.ClienteMapper;
 import org.bedu.Cotizador.model.Cliente;
 import org.bedu.Cotizador.repository.ClienteRepository;

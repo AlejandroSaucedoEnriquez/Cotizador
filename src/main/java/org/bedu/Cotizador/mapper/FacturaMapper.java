@@ -1,7 +1,7 @@
 package org.bedu.Cotizador.mapper;
 
 import org.bedu.Cotizador.dto.FacturaDTO;
-import org.bedu.Cotizador.dto.CreateFacturaDTO;
+import org.bedu.Cotizador.dto.createDTO.CreateFacturaDTO;
 import org.bedu.Cotizador.model.Factura;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
