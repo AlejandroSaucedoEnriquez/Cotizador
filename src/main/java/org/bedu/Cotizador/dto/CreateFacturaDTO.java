@@ -1,4 +1,4 @@
-package org.bedu.Cotizador.dto.createDTO;
+package org.bedu.Cotizador.dto;
 
 import lombok.Data;
 import org.bedu.Cotizador.model.Cliente;

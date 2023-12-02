@@ -1,7 +1,13 @@
 package org.bedu.Cotizador.service;
 
+import org.bedu.Cotizador.dto.FacturaDTO;
+import org.bedu.Cotizador.dto.CreateFacturaDTO;
 import org.bedu.Cotizador.mapper.FacturaMapper;
+import org.bedu.Cotizador.model.Factura;
+import org.bedu.Cotizador.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class FacturaService {
     @Autowired

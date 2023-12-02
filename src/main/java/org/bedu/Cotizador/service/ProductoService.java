@@ -1,5 +1,7 @@
 package org.bedu.Cotizador.service;
 
+import org.bedu.Cotizador.dto.ProductoDTO;
+import org.bedu.Cotizador.dto.CreateProductoDTO;
 import org.bedu.Cotizador.mapper.ProductoMapper;
 import org.bedu.Cotizador.model.Producto;
 import org.bedu.Cotizador.repository.ProductoRepository;
