@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,8 +24,8 @@ public class Factura {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cotizacion> cotizaciones
-            ;
+    private List<Cotizacion> cotizaciones;
+    
     @NotNull
     private LocalDate fechaFacture;
 }
