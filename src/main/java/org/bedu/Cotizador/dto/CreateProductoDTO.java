@@ -1,5 +1,5 @@
 package org.bedu.Cotizador.dto;
 
-public class CreateClienteDTO {
+public class CreateProductoDTO {
     
 }
