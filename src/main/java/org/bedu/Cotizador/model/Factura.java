@@ -9,13 +9,12 @@ import lombok.ToString;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "facturas")
 public class Factura {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

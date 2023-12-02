@@ -1,15 +1,15 @@
 package org.bedu.Cotizador.mapper;
 
-import org.bedu.Cotizador.dto.ClienteDTO;
-import org.bedu.Cotizador.dto.createDTO.CreateClienteDTO;
-import org.bedu.Cotizador.model.Cliente;
+import org.bedu.Cotizador.dto.FacturaDTO;
+import org.bedu.Cotizador.dto.createDTO.CreateFacturaDTO;
+import org.bedu.Cotizador.model.Factura;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public interface ClienteMapper {
-    ClienteDTO toDTO(Cliente entity);
+public interface FacturaMapper {
+    FacturaDTO toDTO(Factura entity);
     @Mapping(target = "id", ignore = true)
-    Cliente toModel(CreateClienteDTO dto);
+    Factura toModel(CreateFacturaDTO dto);
 }

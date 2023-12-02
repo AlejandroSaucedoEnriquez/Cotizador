@@ -2,7 +2,6 @@ package org.bedu.Cotizador.controller;
 
 import java.util.List;
 import org.bedu.Cotizador.dto.ClienteDTO;
-import org.bedu.Cotizador.dto.CreateClienteDTO;
 import org.bedu.Cotizador.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class ClienteController {
      
     @Autowired

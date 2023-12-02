@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "cotizaciones")
 public class Cotizacion {
     @Id
@@ -17,9 +17,10 @@ public class Cotizacion {
 
     @ManyToOne
     private Producto producto;
-
+    @ManyToOne
+    private Factura factura;
     @ManyToOne
     private Cliente cliente;
-
+    @Column(nullable = false)
     private double total;
 }
