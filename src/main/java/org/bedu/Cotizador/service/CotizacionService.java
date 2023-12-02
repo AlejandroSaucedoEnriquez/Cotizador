@@ -19,8 +19,8 @@ public class CotizacionService {
     private CotizacionMapper mapper;
 
     public List<CotizacionDTO> findAll(){
-        List<Cotizacion> data = repository.findAll();
-        return data.stream().map(mapper::toDTO).toList();
+        List<Cotizacion> datos = repository.findAll();
+        return datos.stream().map(mapper::toDTO).toList();
     }
     public CotizacionDTO save(CreateCotizacionDTO data){
         Cotizacion entity = repository.save(mapper.toModel(data));
