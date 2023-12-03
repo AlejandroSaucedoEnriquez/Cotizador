@@ -1,7 +1,6 @@
 package org.bedu.Cotizador.service;
 
 import org.bedu.Cotizador.dto.ClienteDTO;
-import org.bedu.Cotizador.dto.createDTO.CreateClienteDTO;
 import org.bedu.Cotizador.dto.updateDTO.UpdateClienteDTO;
 import org.bedu.Cotizador.mapper.ClienteMapper;
 import org.bedu.Cotizador.model.Cliente;
@@ -27,7 +26,7 @@ public class ClienteService {
         return data.stream().map(mapper::toDTO).toList();
     }
     //Crear 
-    public ClienteDTO save(CreateClienteDTO data){
+    public ClienteDTO save(org.bedu.Cotizador.dto.@Valid CreateClienteDTO data){
         Cliente entity = repository.save(mapper.toModel(data));
         return mapper.toDTO(entity);
     }

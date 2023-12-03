@@ -9,11 +9,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import jakarta.validation.Valid;
+
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ClienteMapper {
     ClienteDTO toDTO(Cliente entity);
     @Mapping(target = "id", ignore = true)
-    Cliente toModel(CreateClienteDTO dto);
+    Cliente toModel(org.bedu.Cotizador.dto.@Valid CreateClienteDTO data);
     //@MapTarget se usa para indicar el objeto destino de la actualización
     @Mapping(target = "id", ignore = true)
     Cliente updateModel(UpdateClienteDTO updDTO, @MappingTarget Cliente entity);
