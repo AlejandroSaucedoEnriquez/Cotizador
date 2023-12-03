@@ -27,7 +27,7 @@ public class ClienteService {
         return data.stream().map(mapper::toDTO).toList();
     }
     //Crear 
-    public ClienteDTO save(org.bedu.Cotizador.dto.@Valid CreateClienteDTO data){
+    public ClienteDTO save(CreateClienteDTO data){
         Cliente entity = repository.save(mapper.toModel(data));
         return mapper.toDTO(entity);
     }
