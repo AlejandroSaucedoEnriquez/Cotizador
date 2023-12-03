@@ -1,5 +1,9 @@
 package org.bedu.Cotizador.dto;
 
+<<<<<<< HEAD
+public class ProductoDTO {
+    
+=======
 import lombok.Data;
 
 @Data
@@ -13,4 +17,5 @@ public class ProductoDTO {
     private String categoria;
     private String marca;
     private String modelo;
+>>>>>>> 0a5649c44af902a15eab2ab307d2c88a1d68c8cc
 }
