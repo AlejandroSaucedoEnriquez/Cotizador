@@ -15,11 +15,11 @@ public class Cotizacion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Producto producto;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Factura factura;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Cliente cliente;
     @Column(nullable = false)
     private double total;
