@@ -8,7 +8,7 @@ import org.bedu.Cotizador.model.Producto;
 @Data
 public class CotizacionDTO {
     private long id;
-    /*private Producto producto;
-    private Cliente cliente;*/
+    private Producto producto;
+    private Cliente cliente;
     private double total;
 }
