@@ -9,6 +9,8 @@ import org.bedu.Cotizador.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +28,7 @@ public class ProductoService {
     }
 
     //Crear
-    public ProductoDTO save(CreateProductoDTO data){
+    public ProductoDTO save(org.bedu.Cotizador.dto.@Valid CreateProductoDTO data){
         Producto entity = repository.save(mapper.toModel(data));
         return mapper.toDTO(entity);
     }

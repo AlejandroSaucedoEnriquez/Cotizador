@@ -9,6 +9,8 @@ import org.bedu.Cotizador.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +27,7 @@ public class ClienteService {
         return data.stream().map(mapper::toDTO).toList();
     }
     //Crear 
-    public ClienteDTO save(CreateClienteDTO data){
+    public ClienteDTO save(org.bedu.Cotizador.dto.@Valid CreateClienteDTO data){
         Cliente entity = repository.save(mapper.toModel(data));
         return mapper.toDTO(entity);
     }

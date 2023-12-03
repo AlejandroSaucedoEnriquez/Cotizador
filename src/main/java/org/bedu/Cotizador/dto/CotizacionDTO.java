@@ -1,6 +1,6 @@
 package org.bedu.Cotizador.dto;
 
-import jakarta.persistence.ManyToOne;
+
 import lombok.Data;
 import org.bedu.Cotizador.model.Cliente;
 import org.bedu.Cotizador.model.Producto;

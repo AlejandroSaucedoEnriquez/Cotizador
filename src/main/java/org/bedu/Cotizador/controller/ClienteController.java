@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 @RequestMapping("/clientes")
 public class ClienteController {
      
@@ -31,6 +33,8 @@ public class ClienteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteDTO save(@Valid @RequestBody CreateClienteDTO data){
+    log.info("Ejecutando guardado de un Cliente");
+    log.info(data.toString());
     return service.save(data);
     }
 }
