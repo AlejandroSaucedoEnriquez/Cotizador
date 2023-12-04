@@ -28,7 +28,7 @@ public class ProductoService {
     }
 
     //Crear
-    public ProductoDTO save(org.bedu.Cotizador.dto.@Valid CreateProductoDTO data){
+    public ProductoDTO save(CreateProductoDTO data){
         Producto entity = repository.save(mapper.toModel(data));
         return mapper.toDTO(entity);
     }

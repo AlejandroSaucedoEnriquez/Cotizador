@@ -8,13 +8,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-import jakarta.validation.Valid;
-
 @Mapper(componentModel = "spring")
 public interface ProductoMapper {
     ProductoDTO toDTO(Producto entity);
     @Mapping(target = "id", ignore = true)
-    Producto toModel(org.bedu.Cotizador.dto.@Valid CreateProductoDTO data);
+    Producto toModel(CreateProductoDTO data);
     //@MapTarget se usa para indicar el objeto destino de la actualización
     @Mapping(target = "id", ignore = true)
     Producto updateModel(UpdateProductoDTO updDTO, @MappingTarget Producto entity);
