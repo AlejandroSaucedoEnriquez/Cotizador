@@ -7,9 +7,7 @@ import org.bedu.Cotizador.mapper.ProductoMapper;
 import org.bedu.Cotizador.model.Producto;
 import org.bedu.Cotizador.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import jakarta.validation.Valid;
+import org.springframework.stereotype.Service; 
 
 import java.util.List;
 import java.util.Optional;
