@@ -60,7 +60,3 @@ public class ClienteController {
         service.delete(id);
     }
 }
-
-
-
-

@@ -62,5 +62,3 @@
             return cotizacionService.generarFactura(cotizacionId);
         }
     }
-
-

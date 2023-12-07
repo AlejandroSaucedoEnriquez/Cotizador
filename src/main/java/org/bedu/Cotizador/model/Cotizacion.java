@@ -33,4 +33,10 @@ public class Cotizacion {
     @Column(nullable = false)
     private BigDecimal subtotal; // Subtotal de la cotización
 
+    @PrePersist
+    protected void onCreate() {
+        // Establecer la fecha actual antes de persistir la entidad
+        fecha = LocalDate.now();
+    }
+
 }
