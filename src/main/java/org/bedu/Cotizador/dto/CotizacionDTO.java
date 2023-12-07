@@ -5,10 +5,16 @@ import lombok.Data;
 import org.bedu.Cotizador.model.Cliente;
 import org.bedu.Cotizador.model.Producto;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
 @Data
 public class CotizacionDTO {
-    private long id;
-    private Producto producto;
-    private Cliente cliente;
-    private double total;
+    private Long id;
+    private Long clienteId;
+    private List<ItemCotizacionDTO> items;
+    private LocalDate fecha;
+    private BigDecimal subtotal;
+
 }

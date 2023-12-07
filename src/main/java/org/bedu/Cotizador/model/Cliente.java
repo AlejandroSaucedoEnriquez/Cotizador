@@ -1,10 +1,14 @@
 package org.bedu.Cotizador.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +26,12 @@ public class Cliente {
     @Column(nullable = false)
     private String direccion;
     @Column(nullable = false)
+    @Email
     private String email;
     @Column(nullable = false)
     private String telefono;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cotizacion> cotizaciones = new ArrayList<>();
+
 }

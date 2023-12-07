@@ -5,6 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -13,14 +18,19 @@ import lombok.ToString;
 public class Cotizacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Producto producto;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Factura factura;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "cotizacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemCotizacion> items = new ArrayList<>();
+
     @Column(nullable = false)
-    private double total;
+    private LocalDate fecha; // Fecha de la cotización
+
+    @Column(nullable = false)
+    private BigDecimal subtotal; // Subtotal de la cotización
+
 }

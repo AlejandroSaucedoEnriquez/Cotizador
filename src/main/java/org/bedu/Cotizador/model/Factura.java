@@ -1,30 +1,20 @@
 package org.bedu.Cotizador.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import org.bedu.Cotizador.dto.CotizacionDTO;
+import org.bedu.Cotizador.dto.FacturaDTO;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.math.BigDecimal;
 
-@Getter
-@Setter
-@ToString
-@Entity
-@Table(name = "facturas")
+@Data
 public class Factura {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private CotizacionDTO cotizacion;
+    private BigDecimal total;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Cliente cliente;
-
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cotizacion> cotizaciones;
-    
-    @NotNull
-    private LocalDate fechaFacture;
+    public FacturaDTO toDTO() {
+        FacturaDTO facturaDTO = new FacturaDTO();
+        facturaDTO.setCotizacion(this.cotizacion);
+        facturaDTO.setTotal(this.total);
+        return facturaDTO;
+    }
 }

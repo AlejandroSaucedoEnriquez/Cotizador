@@ -51,6 +51,16 @@ public class ProductoService {
         }
     }
 
+    // Obtener por ID
+    public ProductoDTO findById(Long id) {
+        Optional<Producto> entity = repository.findById(id);
+        if (entity.isPresent()) {
+            return mapper.toDTO(entity.get());
+        } else {
+            throw new RuntimeException("Este producto no existe");
+        }
+    }
+
     //Eliminar
     public void delete(long id){
         repository.deleteById(id);

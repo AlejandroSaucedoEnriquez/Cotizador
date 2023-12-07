@@ -14,10 +14,13 @@ public class CreateProductoDTO {
     @Digits(integer = 200, fraction = 2, message = "El precio debe tener hasta dos dígitos decimales")
     @Positive(message = "El precio debe ser mayor a 0")
     private double precio;
+
     @Positive (message = "El stock debe ser un número positivo")
     private int stock;
+
     @Size (max = 150, message = "La descripción debe tener como máximo 150 caracteres")
     private String descripcion;
+
     @NotBlank(message = "La categoría no puede estar en blanco")
     private String categoria;
     @NotBlank(message = "La marca no puede estar en blanco")
