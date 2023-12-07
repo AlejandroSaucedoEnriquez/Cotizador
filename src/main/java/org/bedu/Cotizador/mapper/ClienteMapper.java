@@ -13,6 +13,7 @@ public interface ClienteMapper {
     @Mapping(target = "cotizaciones", ignore = true)
     Cliente toModel(CreateClienteDTO dto);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "cotizaciones", ignore = true)
     Cliente toModel(UpdateClienteDTO dto, @MappingTarget Cliente cliente);
 

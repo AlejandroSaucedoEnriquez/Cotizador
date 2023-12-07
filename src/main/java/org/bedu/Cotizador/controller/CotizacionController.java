@@ -8,6 +8,7 @@
     import org.bedu.Cotizador.service.CotizacionService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
     import java.util.List;
@@ -16,49 +17,33 @@
     @RequestMapping("/cotizaciones")
     @Slf4j
     public class CotizacionController {
+
         @Autowired
         private CotizacionService cotizacionService;
 
-        @Autowired
-        private ClienteService clienteService;
-
-        // Obtener cotizaciones de un cliente por ID
-        @GetMapping("/cliente/{clienteId}")
-        @ResponseStatus(HttpStatus.OK)
-        public List<CotizacionDTO> getCotizacionesByClienteId(@PathVariable Long clienteId) {
-            log.info("Obteniendo cotizaciones para el cliente con id: {}", clienteId);
-            return clienteService.getCotizacionesByClienteId(clienteId);
-        }
-
-        // Crear una nueva cotización
         @PostMapping
-        @ResponseStatus(HttpStatus.CREATED)
-        public CotizacionDTO crearCotizacion(@RequestBody CreateCotizacionDTO cotizacionDTO) {
-            log.info("Creando nueva cotización");
-            return cotizacionService.save(cotizacionDTO);
+        public ResponseEntity<CotizacionDTO> guardarCotizacion(@RequestBody CreateCotizacionDTO createCotizacionDTO) {
+            CotizacionDTO cotizacionDTO = cotizacionService.guardarCotizacionParaCliente(createCotizacionDTO);
+            return new ResponseEntity<>(cotizacionDTO, HttpStatus.CREATED);
         }
 
-        // Obtener detalles de una cotización por ID
         @GetMapping("/{cotizacionId}")
-        @ResponseStatus(HttpStatus.OK)
-        public CotizacionDTO getCotizacionById(@PathVariable Long cotizacionId) {
-            log.info("Obteniendo detalles de la cotización con id: {}", cotizacionId);
-            return cotizacionService.getCotizacionById(cotizacionId);
+        public ResponseEntity<CotizacionDTO> obtenerCotizacion(@PathVariable Long cotizacionId) {
+            CotizacionDTO cotizacionDTO = cotizacionService.obtenerCotizacion(cotizacionId);
+            return new ResponseEntity<>(cotizacionDTO, HttpStatus.OK);
         }
 
-        // Eliminar una cotización por ID
+        @PutMapping("/{cotizacionId}")
+        public ResponseEntity<Void> completarCotizacion(@PathVariable Long cotizacionId) {
+            cotizacionService.completarCotizacion(cotizacionId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
         @DeleteMapping("/{cotizacionId}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        public void deleteCotizacion(@PathVariable Long cotizacionId) {
-            log.info("Eliminando la cotización con id: {}", cotizacionId);
-            cotizacionService.deleteCotizacion(cotizacionId);
+        public ResponseEntity<Void> eliminarCotizacion(@PathVariable Long cotizacionId) {
+            cotizacionService.eliminarCotizacion(cotizacionId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        // Generar factura para una cotización por ID
-        @PostMapping("/{cotizacionId}/factura")
-        @ResponseStatus(HttpStatus.CREATED)
-        public FacturaDTO generarFactura(@PathVariable Long cotizacionId) {
-            log.info("Generando factura para la cotización con id: {}", cotizacionId);
-            return cotizacionService.generarFactura(cotizacionId);
-        }
+        // Otros endpoints según sea necesario
     }

@@ -3,6 +3,8 @@ package org.bedu.Cotizador.dto.createDTO;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class CreateProductoDTO {
     @NotBlank(message = "El nombre no puede estar en blanco")
@@ -13,7 +15,7 @@ public class CreateProductoDTO {
     @NotNull
     @Digits(integer = 200, fraction = 2, message = "El precio debe tener hasta dos dígitos decimales")
     @Positive(message = "El precio debe ser mayor a 0")
-    private double precio;
+    private BigDecimal precio;
 
     @Positive (message = "El stock debe ser un número positivo")
     private int stock;

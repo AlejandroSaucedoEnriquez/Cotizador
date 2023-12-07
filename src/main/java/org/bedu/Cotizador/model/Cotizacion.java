@@ -21,7 +21,7 @@ public class Cotizacion {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @OneToMany(mappedBy = "cotizacion", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -30,7 +30,7 @@ public class Cotizacion {
     @Column(nullable = false)
     private LocalDate fecha; // Fecha de la cotización
 
-    @Column(nullable = false)
+    @Column
     private BigDecimal subtotal; // Subtotal de la cotización
 
     @PrePersist

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Formula;
 
 import java.math.BigDecimal;
 
@@ -22,15 +23,12 @@ public class ItemCotizacion {
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name = "cotizacion_id", nullable = false)
+    @JoinColumn(name = "cotizacion_id")
     private Cotizacion cotizacion;
 
     @Column(nullable = false)
     private int cantidad;
 
-    @Column(nullable = false)
-    private BigDecimal precioUnitario; // Precio unitario del producto en este ítem
-
-    @Column(nullable = false)
+    @Column
     private BigDecimal subtotal; // Subtotal de este ítem
 }

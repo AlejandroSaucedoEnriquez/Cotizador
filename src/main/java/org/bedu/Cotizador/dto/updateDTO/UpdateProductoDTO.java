@@ -2,11 +2,13 @@ package org.bedu.Cotizador.dto.updateDTO;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class UpdateProductoDTO {
     private String nombre;
     private String sku;
-    private double precio;
+    private BigDecimal precio;
     private int stock;
     private String descripcion;
     private String categoria;

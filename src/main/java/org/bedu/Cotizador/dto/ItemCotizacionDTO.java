@@ -9,6 +9,5 @@ public class ItemCotizacionDTO {
     private Long id;
     private Long productoId;
     private int cantidad;
-    private BigDecimal precioUnitario;
     private BigDecimal subtotal;
 }
