@@ -34,15 +34,6 @@ public class ItemCotizacionService {
     @Autowired
     private CotizacionMapper cotizacionMapper;
 
-    public ItemCotizacion createItemCotizacion(CreateItemCotizacionDTO createItemCotizacionDTO) {
-        Producto producto = productoRepository.findById(createItemCotizacionDTO.getProductoId())
-                .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado con ID: " + createItemCotizacionDTO.getProductoId()));
-
-        ItemCotizacion itemCotizacion = cotizacionMapper.toModel(createItemCotizacionDTO);
-        itemCotizacion.setSubtotal(calculateSubtotal(itemCotizacion, producto.getPrecio()));
-
-        return itemCotizacionRepository.save(itemCotizacion);
-    }
     public ItemCotizacion updateItemCotizacionCantidad(Long itemCotizacionId, int nuevaCantidad) {
         ItemCotizacion itemCotizacion = itemCotizacionRepository.findById(itemCotizacionId)
                 .orElseThrow(() -> new EntityNotFoundException("ItemCotizacion no encontrado con ID: " + itemCotizacionId));
