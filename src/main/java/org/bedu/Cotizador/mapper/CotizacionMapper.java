@@ -34,7 +34,7 @@ public interface CotizacionMapper {
     @Mapping(target = "productoId", ignore = true)
     ItemCotizacionDTO toDTO(ItemCotizacion entity);
 
-    @Mapping(target = "id", ignore = true)
+@Mapping(target = "id", ignore = true)
     @Mapping(target = "subtotal", ignore = true)
     @Mapping(target = "cotizacion", ignore = true)
     @Mapping(target = "producto", source = "productoId", qualifiedByName = "toModelProducto")

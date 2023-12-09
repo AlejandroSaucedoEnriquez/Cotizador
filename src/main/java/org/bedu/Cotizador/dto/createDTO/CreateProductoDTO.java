@@ -21,6 +21,7 @@ public class CreateProductoDTO {
     private int stock;
 
     @Size (max = 150, message = "La descripción debe tener como máximo 150 caracteres")
+    @NotBlank(message = "La descripción no puede estar en blanco")
     private String descripcion;
 
     @NotBlank(message = "La categoría no puede estar en blanco")
