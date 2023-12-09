@@ -4,14 +4,13 @@ import org.bedu.Cotizador.dto.CotizacionDTO;
 import org.bedu.Cotizador.dto.ItemCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateItemCotizacionDTO;
-import org.bedu.Cotizador.dto.updateDTO.UpdateItemCotizacionDTO;
 import org.bedu.Cotizador.model.Cotizacion;
 import org.bedu.Cotizador.model.ItemCotizacion;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.Named;
+
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;

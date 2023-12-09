@@ -2,27 +2,21 @@ package org.bedu.Cotizador.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
 import org.bedu.Cotizador.dto.CotizacionDTO;
-import org.bedu.Cotizador.dto.FacturaDTO;
-import org.bedu.Cotizador.dto.ItemCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateItemCotizacionDTO;
-import org.bedu.Cotizador.dto.updateDTO.UpdateCotizacionDTO;
 import org.bedu.Cotizador.dto.updateDTO.UpdateItemCotizacionDTO;
 import org.bedu.Cotizador.mapper.CotizacionMapper;
 import org.bedu.Cotizador.model.*;
 import org.bedu.Cotizador.repository.ClienteRepository;
 import org.bedu.Cotizador.repository.CotizacionRepository;
-import org.bedu.Cotizador.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 @Transactional

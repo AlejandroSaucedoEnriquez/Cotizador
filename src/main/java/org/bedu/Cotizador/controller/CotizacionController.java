@@ -1,21 +1,19 @@
     package org.bedu.Cotizador.controller;
 
-    import lombok.extern.slf4j.Slf4j;
     import org.bedu.Cotizador.dto.CotizacionDTO;
-    import org.bedu.Cotizador.dto.FacturaDTO;
+    
     import org.bedu.Cotizador.dto.createDTO.CreateCotizacionDTO;
-    import org.bedu.Cotizador.service.ClienteService;
+   
     import org.bedu.Cotizador.service.CotizacionService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
-    import java.util.List;
+    
 
     @RestController
     @RequestMapping("/cotizaciones")
-    @Slf4j
     public class CotizacionController {
 
         @Autowired

@@ -2,8 +2,7 @@ package org.bedu.Cotizador.dto;
 
 
 import lombok.Data;
-import org.bedu.Cotizador.model.Cliente;
-import org.bedu.Cotizador.model.Producto;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
