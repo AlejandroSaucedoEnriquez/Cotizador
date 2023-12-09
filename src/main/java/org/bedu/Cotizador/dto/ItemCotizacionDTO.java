@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 
 @Data
 public class ItemCotizacionDTO {
-    private Long id;
-    private Long productoId;
+    private long id;
+    private long productoId;
     private int cantidad;
     private BigDecimal subtotal;
 }

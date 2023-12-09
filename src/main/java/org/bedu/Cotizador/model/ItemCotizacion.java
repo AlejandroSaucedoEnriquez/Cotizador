@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 public class ItemCotizacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "producto_id", nullable = false)

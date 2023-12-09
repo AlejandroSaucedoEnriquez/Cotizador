@@ -18,7 +18,7 @@ import java.util.List;
 public class Cotizacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")

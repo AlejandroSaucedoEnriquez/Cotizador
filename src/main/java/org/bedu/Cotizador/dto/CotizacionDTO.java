@@ -10,8 +10,8 @@ import java.util.List;
 
 @Data
 public class CotizacionDTO {
-    private Long id;
-    private Long clienteId;
+    private long id;
+    private long clienteId;
     private List<ItemCotizacionDTO> items;
     private LocalDate fecha;
     private BigDecimal subtotal;

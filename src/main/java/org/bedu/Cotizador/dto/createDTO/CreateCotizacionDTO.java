@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class CreateCotizacionDTO {
     @NotNull
-    private Long clienteId;
+    private long clienteId;
     private List<CreateItemCotizacionDTO> items;
 }
