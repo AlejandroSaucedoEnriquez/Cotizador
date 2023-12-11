@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ProductoController {
     @Autowired
     private ProductoService service;
-
+    
+    @Operation(summary = "Obtiene una lista de todos los productos")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductoDTO> findAll(){
@@ -29,6 +31,7 @@ public class ProductoController {
     }
 
     //Crear un Producto
+    @Operation(summary = "Crea un nuevo producto")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductoDTO save(@Valid @RequestBody CreateProductoDTO data){
@@ -38,6 +41,7 @@ public class ProductoController {
     }
 
     // Actualizar un producto por ID
+    @Operation(summary = "Sustituir datos del producto por Id")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductoDTO update(@PathVariable Long id, @Valid @RequestBody UpdateProductoDTO data) {
@@ -47,6 +51,7 @@ public class ProductoController {
     }
 
     // Obtener un producto por ID
+    @Operation(summary = "Obtiene un producto por Id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductoDTO findById(@PathVariable Long id) {
@@ -55,6 +60,7 @@ public class ProductoController {
     }
 
     // Eliminar un producto por ID
+    @Operation(summary = "Eliminar un producto por Id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {

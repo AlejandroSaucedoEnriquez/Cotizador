@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Endpoints de itemCotizacion", description = "Agregar varios productos a cotizacion")
@@ -18,7 +19,8 @@ public class ItemCotizacionController {
 
         @Autowired
         private ItemCotizacionService itemCotizacionService;
-
+        
+        @Operation(summary = "Agregar items varios productos a cotizacion")
         @PostMapping("/agregar/{cotizacionId}")
         public ResponseEntity<ItemCotizacionDTO> agregarItemCotizacion(
                 @PathVariable Long cotizacionId,

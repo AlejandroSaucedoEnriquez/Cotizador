@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
+    @Operation(summary = "Obtiene una lista de todos los clientes")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClienteDTO> findAll(){
@@ -29,6 +31,7 @@ public class ClienteController {
     }
 
     //Crear Cliente
+    @Operation(summary = "Crea un nuevo cliente")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteDTO save(@Valid @RequestBody CreateClienteDTO data){
@@ -38,6 +41,7 @@ public class ClienteController {
     }
 
     // Actualizar
+    @Operation(summary = "Sustituir datos del cliente por Id")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ClienteDTO update(@PathVariable long id, @Valid @RequestBody UpdateClienteDTO data) {
@@ -47,6 +51,7 @@ public class ClienteController {
     }
 
     // Obtener por ID
+    @Operation(summary = "Obtiene un cliente por Id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ClienteDTO findById(@PathVariable long id) {
@@ -55,6 +60,7 @@ public class ClienteController {
     }
 
     // Eliminar
+    @Operation(summary = "Eliminar un cliente por Id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {

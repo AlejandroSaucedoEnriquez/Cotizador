@@ -11,7 +11,8 @@
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
-    import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
     
     @Tag(name = "Endpoints de cotizacion", description = "Crear cotizacion")
@@ -25,7 +26,8 @@
 
         @Autowired
         private CotizacionMapper cotizacionMapper;
-
+        
+        @Operation(summary = "Crear Cotizacion")
         @PostMapping
         public ResponseEntity<CotizacionDTO> crearCotizacion(@RequestBody CreateCotizacionDTO createCotizacionDTO) {
             CotizacionDTO cotizacionDTO = cotizacionService.crearCotizacion(createCotizacionDTO);
