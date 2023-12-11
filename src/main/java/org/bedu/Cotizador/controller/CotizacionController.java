@@ -11,8 +11,10 @@
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
-    
+    import io.swagger.v3.oas.annotations.tags.Tag;
 
+    
+    @Tag(name = "Endpoints de cotizacion", description = "Crear cotizacion")
     @RestController
     @RequestMapping("/cotizaciones")
     public class CotizacionController {

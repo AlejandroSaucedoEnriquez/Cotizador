@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Endpoints de itemCotizacion", description = "Agregar varios productos a cotizacion")
 @RestController
 @RequestMapping("/api/item-cotizacion")
 public class ItemCotizacionController {
