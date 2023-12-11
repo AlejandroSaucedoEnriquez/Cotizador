@@ -64,7 +64,13 @@ public class CotizacionService {
         // Guardar la cotización con los ítems
         cotizacion = cotizacionRepository.save(cotizacion);
 
+        // Obtener el DTO de la cotización creada (incluyendo información del cliente)
+        CotizacionDTO cotizacionDTO = cotizacionMapper.toDTO(cotizacion);
+
+        // Asignar el subtotal calculado al DTO
+        cotizacionDTO.setSubtotal(total);
+
         // Devolver el DTO de la cotización creada
-        return cotizacionMapper.toDTO(cotizacion);
+        return cotizacionDTO;
     }
 }

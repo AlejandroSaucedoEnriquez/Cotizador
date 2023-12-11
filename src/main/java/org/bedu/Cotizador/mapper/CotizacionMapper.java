@@ -24,6 +24,7 @@ public interface CotizacionMapper {
 
     Cotizacion toModel (CreateCotizacionDTO dto);
 
+    @Mapping(target = "clienteId", source = "cliente.id")
     CotizacionDTO toDTO (Cotizacion entity);
 
     Cotizacion updateModel (UpdateCotizacionDTO updDTO, @MappingTarget Cotizacion entity);
