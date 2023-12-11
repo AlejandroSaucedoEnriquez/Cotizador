@@ -2,29 +2,23 @@ package org.bedu.Cotizador.mapper;
 
 import org.bedu.Cotizador.dto.CotizacionDTO;
 import org.bedu.Cotizador.dto.ItemCotizacionDTO;
-import org.bedu.Cotizador.dto.ProductoDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateItemCotizacionDTO;
 import org.bedu.Cotizador.dto.updateDTO.UpdateCotizacionDTO;
 import org.bedu.Cotizador.dto.updateDTO.UpdateItemCotizacionDTO;
 import org.bedu.Cotizador.model.Cotizacion;
 import org.bedu.Cotizador.model.ItemCotizacion;
-import org.bedu.Cotizador.model.Producto;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-import org.mapstruct.factory.Mappers;
-
-import java.util.List;
-
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public interface CotizacionMapper {
+public interface ItemCotizacionMapper {
 
-    Cotizacion toModel (CreateCotizacionDTO dto);
+    ItemCotizacion toModel (CreateItemCotizacionDTO dto);
 
-    CotizacionDTO toDTO (Cotizacion entity);
+    ItemCotizacionDTO toDTO (ItemCotizacion entity);
 
-    Cotizacion updateModel (UpdateCotizacionDTO updDTO, @MappingTarget Cotizacion entity);
+    ItemCotizacion updateModel (UpdateItemCotizacionDTO updDTO, @MappingTarget ItemCotizacion entity);
+
 }

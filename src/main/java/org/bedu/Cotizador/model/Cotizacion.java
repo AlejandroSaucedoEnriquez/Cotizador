@@ -25,13 +25,13 @@ public class Cotizacion {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "cotizacion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemCotizacion> items = new ArrayList<>();
+    private List<ItemCotizacion> items;
 
     @Column(nullable = false)
     private LocalDate fecha; // Fecha de la cotización
 
     @Column
-    private BigDecimal subtotal; // Subtotal de la cotización
+    private BigDecimal total; // Subtotal de la cotización
 
     @PrePersist
     protected void onCreate() {

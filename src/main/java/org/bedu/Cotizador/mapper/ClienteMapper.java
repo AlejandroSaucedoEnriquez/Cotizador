@@ -18,16 +18,5 @@ public interface ClienteMapper {
     Cliente toModel(UpdateClienteDTO dto, @MappingTarget Cliente cliente);
 
     ClienteDTO toDTO(Cliente entity);
-
-    // Método adicional para mapear Long a Cliente
-    @Named("toModel")
-    static Cliente toModel(Long clienteId) {
-        if (clienteId == null) {
-            return null;
-        }
-        Cliente cliente = new Cliente();
-        cliente.setId(clienteId);
-        return cliente;
-    }
 }
 

@@ -38,6 +38,7 @@ public class Producto {
     @Column(nullable = false)
     private String modelo;
 
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemCotizacion> items = new ArrayList<>();
+    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ItemCotizacion itemCotizacion;
+
 }

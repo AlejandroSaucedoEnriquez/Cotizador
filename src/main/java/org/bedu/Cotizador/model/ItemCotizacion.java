@@ -19,16 +19,19 @@ public class ItemCotizacion {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name = "cotizacion_id", nullable = false)
+    private Cotizacion cotizacion;
+
+    @OneToOne
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
-
-    @ManyToOne
-    @JoinColumn(name = "cotizacion_id")
-    private Cotizacion cotizacion;
 
     @Column(nullable = false)
     private int cantidad;
 
+    @Column(nullable = false)
+    private BigDecimal precioUnitario;
+
     @Column
-    private BigDecimal subtotal; // Subtotal de este ítem
+    private BigDecimal subtotal;
 }

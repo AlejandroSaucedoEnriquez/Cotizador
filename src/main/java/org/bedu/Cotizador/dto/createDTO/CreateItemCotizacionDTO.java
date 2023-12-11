@@ -11,14 +11,9 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class CreateItemCotizacionDTO {
-    @NotNull
-    private long productoId;
-
-    @NotNull
-    @Positive(message = "La cantidad debe ser un número positivo")
+    @NotNull(message = "El producto no puede ser nulo")
+    private Long productoId;
     private int cantidad;
-
-    private List<CreateItemCotizacionDTO> itemsToAdd;
 }
+
