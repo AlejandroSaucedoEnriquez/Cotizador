@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class UpdateItemCotizacionDTO {
-    private List<CreateItemCotizacionDTO> itemsToAdd;
-    private List<Long> itemsToDelete;
+    private Long productoId;
+    private int cantidad;
 }

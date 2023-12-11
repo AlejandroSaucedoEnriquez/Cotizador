@@ -30,7 +30,7 @@ public class Cliente {
     @Column(nullable = false)
     private String telefono;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Cotizacion> cotizaciones = new ArrayList<>();
 
 }

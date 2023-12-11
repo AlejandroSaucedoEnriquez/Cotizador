@@ -8,6 +8,6 @@ import java.util.List;
 
 @Data
 public class UpdateCotizacionDTO {
-    private List<CreateItemCotizacionDTO> itemsToAdd;
-    private List<Long> itemsToDelete;
+    private Long clienteId;
+    private List<UpdateItemCotizacionDTO> items;
 }

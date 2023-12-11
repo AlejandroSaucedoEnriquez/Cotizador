@@ -12,7 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateCotizacionDTO {
-    @NotNull
-    private long clienteId;
+    @NotNull(message = "El cliente no puede ser nulo")
+    private Long clienteId;
+
     private List<CreateItemCotizacionDTO> items;
 }
