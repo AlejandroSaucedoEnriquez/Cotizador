@@ -1,10 +1,9 @@
 package org.bedu.Cotizador.dto.createDTO;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.bedu.Cotizador.model.Cotizacion;
 
 
 import java.util.List;

@@ -15,10 +15,6 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ItemCotizacionMapper {
 
-    ItemCotizacion toModel (CreateItemCotizacionDTO dto);
-
     ItemCotizacionDTO toDTO (ItemCotizacion entity);
-
-    ItemCotizacion updateModel (UpdateItemCotizacionDTO updDTO, @MappingTarget ItemCotizacion entity);
 
 }

@@ -68,7 +68,7 @@ public class CotizacionService {
         CotizacionDTO cotizacionDTO = cotizacionMapper.toDTO(cotizacion);
 
         // Asignar el subtotal calculado al DTO
-        cotizacionDTO.setSubtotal(total);
+        cotizacionDTO.setTotal(total);
 
         // Devolver el DTO de la cotización creada
         return cotizacionDTO;

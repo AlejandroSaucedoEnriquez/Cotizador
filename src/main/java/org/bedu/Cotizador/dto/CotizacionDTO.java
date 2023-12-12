@@ -14,5 +14,5 @@ public class CotizacionDTO {
     private Long clienteId;
     private List<ItemCotizacionDTO> items;
     private LocalDate fecha;
-    private BigDecimal subtotal;
+    private BigDecimal total;
 }

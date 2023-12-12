@@ -3,15 +3,11 @@
     import jakarta.validation.Valid;
     import lombok.extern.slf4j.Slf4j;
     import org.bedu.Cotizador.dto.CotizacionDTO;
-
-    import org.bedu.Cotizador.dto.createDTO.CreateClienteDTO;
     import org.bedu.Cotizador.dto.createDTO.CreateCotizacionDTO;
-
     import org.bedu.Cotizador.mapper.CotizacionMapper;
     import org.bedu.Cotizador.service.CotizacionService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
-    import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,9 +23,6 @@ public class CotizacionController {
 
     @Autowired
     private CotizacionService service;
-
-    @Autowired
-    private CotizacionMapper cotizacionMapper;
 
     @Operation(summary = "Crear Cotizacion")
     @PostMapping
