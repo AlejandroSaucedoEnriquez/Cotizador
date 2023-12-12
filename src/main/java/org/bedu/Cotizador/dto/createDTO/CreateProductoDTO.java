@@ -16,6 +16,7 @@ public class CreateProductoDTO {
     private String sku;
     @Schema(description = "Precio del producto", example = "15000")
     @NotNull
+    @NotNull(message = "El precio no puede estar en blanco")
     @Digits(integer = 200, fraction = 2, message = "El precio debe tener hasta dos dígitos decimales")
     @Positive(message = "El precio debe ser mayor a 0")
     private BigDecimal precio;

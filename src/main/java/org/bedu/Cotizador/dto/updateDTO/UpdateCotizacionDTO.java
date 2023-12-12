@@ -1,7 +1,6 @@
 package org.bedu.Cotizador.dto.updateDTO;
 
 import lombok.Data;
-import org.bedu.Cotizador.dto.createDTO.CreateItemCotizacionDTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
