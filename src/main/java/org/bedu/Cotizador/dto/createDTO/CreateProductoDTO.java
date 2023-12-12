@@ -12,7 +12,7 @@ public class CreateProductoDTO {
 
     private String sku;
 
-    @NotNull
+    @NotNull(message = "El precio no puede estar en blanco")
     @Digits(integer = 200, fraction = 2, message = "El precio debe tener hasta dos dígitos decimales")
     @Positive(message = "El precio debe ser mayor a 0")
     private BigDecimal precio;

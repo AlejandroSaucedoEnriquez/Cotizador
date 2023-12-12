@@ -15,8 +15,10 @@ public interface ProductoMapper {
     ProductoDTO toDTO(Producto entity);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "itemCotizacion", ignore = true)
     Producto toModel(CreateProductoDTO data);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "itemCotizacion", ignore = true)
     Producto updateModel(UpdateProductoDTO updDTO, @MappingTarget Producto entity);
 }
