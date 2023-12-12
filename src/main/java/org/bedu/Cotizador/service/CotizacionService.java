@@ -5,20 +5,16 @@ import jakarta.transaction.Transactional;
 import org.bedu.Cotizador.dto.CotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateItemCotizacionDTO;
-import org.bedu.Cotizador.dto.updateDTO.UpdateItemCotizacionDTO;
 import org.bedu.Cotizador.dto.ItemCotizacionDTO;
 import org.bedu.Cotizador.mapper.CotizacionMapper;
 import org.bedu.Cotizador.model.*;
 import org.bedu.Cotizador.repository.ClienteRepository;
 import org.bedu.Cotizador.repository.CotizacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 @Service
