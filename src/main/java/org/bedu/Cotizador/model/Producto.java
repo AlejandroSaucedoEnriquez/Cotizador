@@ -7,8 +7,6 @@ import lombok.ToString;
 import org.springframework.format.annotation.NumberFormat;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
