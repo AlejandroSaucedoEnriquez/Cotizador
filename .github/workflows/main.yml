@@ -1,5 +1,8 @@
 name: Java CI
 
+# Ejecuta el flujo de trabajo en la rama main,
+# cada que se haga un push o un pull request.
+# Utilizando un entorno Ubuntu
 on:
   push:
     branches: [ main ]
@@ -12,23 +15,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Obtiene una copia del repositorio
     - uses: actions/checkout@v2
-
+      
+      # Configura el JDK 17 para el proyecto
     - name: Set up JDK 17
       uses: actions/setup-java@v2
       with:
         java-version: '17'
         distribution: 'adopt'
 
+      # Usa chmod +x para darle permisos de ejecución a gradlew
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+      # Construye la aplicación con gradle
     - name: Build with Gradle
       run: ./gradlew build
 
+      # Ejecuta la aplicación
     - name: Start application
       run: ./gradlew bootRun &
       shell: bash
-
+      
+      # En caso de haber, ejecuta las pruebas unitarias
     - name: Run tests
       run: ./gradlew test
