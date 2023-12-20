@@ -32,4 +32,5 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Cotizacion> cotizaciones = new ArrayList<>();
+    
 }
