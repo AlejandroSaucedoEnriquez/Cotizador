@@ -15,11 +15,11 @@ jobs:
 
     steps:
       # Obtiene una copia del repositorio
-    - uses: actions/setup-java@v2
+    - uses: actions/checkout@v2
       
       # Configura el JDK 17 para el proyecto
     - name: Set up JDK 17
-      uses: actions/checkout@v2
+      uses: actions/setup-java@v2 
       with:
         java-version: '17'
         distribution: 'adopt'
