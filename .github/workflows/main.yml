@@ -1,8 +1,7 @@
 name: Java CI
 
-# Ejecuta el flujo de trabajo en la rama main,
-# cada que se haga un push o un pull request.
-# Utilizando un entorno Ubuntu
+# Ejecuta el flujo de trabajo en la rama main, cada que se haga un push o un pull request
+# utilizando un entorno Ubuntu
 on:
   push:
     branches: [ main ]
