@@ -26,18 +26,18 @@ public class ClienteController {
     @Operation(summary = "Obtiene una lista de todos los clientes")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ClienteDTO> findAll(){
+    public List<ClienteDTO> findAll() {
         return service.findAll();
     }
 
-    //Crear Cliente
+    // Crear Cliente
     @Operation(summary = "Crea un nuevo cliente")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClienteDTO save(@Valid @RequestBody CreateClienteDTO data){
-    log.info("Ejecutando guardado de un Cliente");
-    log.info(data.toString());
-    return service.save(data);
+    public ClienteDTO save(@Valid @RequestBody CreateClienteDTO data) {
+        log.info("Ejecutando guardado de un Cliente");
+        log.info(data.toString());
+        return service.save(data);
     }
 
     // Actualizar
