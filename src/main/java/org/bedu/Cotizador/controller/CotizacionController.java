@@ -1,4 +1,4 @@
-    package org.bedu.Cotizador.controller;
+package org.bedu.Cotizador.controller;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

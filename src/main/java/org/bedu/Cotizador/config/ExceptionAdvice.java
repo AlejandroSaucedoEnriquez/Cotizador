@@ -29,6 +29,6 @@ public class ExceptionAdvice {
     @ExceptionHandler(Exception.class)
     public ErrorDTO unknownError(Exception ex) {
         log.error(ex.getMessage());
-        return new ErrorDTO("ERR_EXC", "Ocurrió un error inesperado", "No existen datos (clientes o productos)");
+        return new ErrorDTO("ERR_EXC", "Ocurrió un error inesperado", "No existen datos cliente o producto");
     }
 }

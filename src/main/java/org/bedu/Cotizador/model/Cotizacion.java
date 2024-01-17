@@ -37,5 +37,4 @@ public class Cotizacion {
         // Establecer la fecha actual antes de persistir la entidad
         fecha = LocalDate.now();
     }
-
 }

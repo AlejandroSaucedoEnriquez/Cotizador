@@ -15,10 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Optional;
+
 
 @Service
 @Transactional
 public class ItemCotizacionService {
+
     @Autowired
     private ItemCotizacionRepository itemCotizacionRepository;
 
@@ -40,26 +43,39 @@ public class ItemCotizacionService {
         Producto producto = productoRepository.findById(createItemCotizacionDTO.getProductoId())
                 .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado"));
 
-        // Crear el ItemCotizacion
-        ItemCotizacion itemCotizacion = new ItemCotizacion();
-        itemCotizacion.setCotizacion(cotizacion);
-        itemCotizacion.setProducto(producto);
-        itemCotizacion.setCantidad(createItemCotizacionDTO.getCantidad());
+        // Verificar si ya existe un ítem con el mismo PRODUCTO_ID para la cotización
+        Optional<ItemCotizacion> existingItem = cotizacion.getItems().stream()
+                .filter(item -> item.getProducto().equals(producto))
+                .findFirst();
 
-        // Calcular el subtotal
-        BigDecimal precioUnitario = producto.getPrecio();
-        BigDecimal subtotal = precioUnitario.multiply(BigDecimal.valueOf(createItemCotizacionDTO.getCantidad()));
-        itemCotizacion.setPrecioUnitario(precioUnitario);
-        itemCotizacion.setSubtotal(subtotal);
+        if (existingItem.isPresent()) {
+            // Si ya existe, actualizar la cantidad
+            ItemCotizacion itemToUpdate = existingItem.get();
+            itemToUpdate.setCantidad(itemToUpdate.getCantidad() + createItemCotizacionDTO.getCantidad());
+            itemToUpdate.setSubtotal(itemToUpdate.getPrecioUnitario().multiply(BigDecimal.valueOf(itemToUpdate.getCantidad())));
+            return itemCotizacionMapper.toDTO(itemToUpdate);
+        } else {
+            // Si no existe, crear un nuevo ítem
+            ItemCotizacion itemCotizacion = new ItemCotizacion();
+            itemCotizacion.setCotizacion(cotizacion);
+            itemCotizacion.setProducto(producto);
+            itemCotizacion.setCantidad(createItemCotizacionDTO.getCantidad());
 
-        // Guardar el ItemCotizacion
-        itemCotizacion = itemCotizacionRepository.save(itemCotizacion);
+            // Calcular el subtotal
+            BigDecimal precioUnitario = producto.getPrecio();
+            BigDecimal subtotal = precioUnitario.multiply(BigDecimal.valueOf(createItemCotizacionDTO.getCantidad()));
+            itemCotizacion.setPrecioUnitario(precioUnitario);
+            itemCotizacion.setSubtotal(subtotal);
 
-        // Actualizar la cotización con el nuevo ItemCotizacion
-        cotizacion.getItems().add(itemCotizacion);
-        cotizacionRepository.save(cotizacion);
+            // Guardar el ItemCotizacion
+            itemCotizacion = itemCotizacionRepository.save(itemCotizacion);
 
-        // Devolver el DTO del ItemCotizacion creado
-        return itemCotizacionMapper.toDTO(itemCotizacion);
+            // Actualizar la cotización con el nuevo ItemCotizacion
+            cotizacion.getItems().add(itemCotizacion);
+            cotizacionRepository.save(cotizacion);
+
+            // Devolver el DTO del ItemCotizacion creado
+            return itemCotizacionMapper.toDTO(itemCotizacion);
+        }
     }
 }

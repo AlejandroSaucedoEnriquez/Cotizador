@@ -20,6 +20,5 @@ public class CotizacionDTO {
     @Schema(description = "Fecha de cotizacion", example = "2023-12-10")
     private LocalDate fecha;
     @Schema(description = "Subtotal del pedido del cliente", example = "35000")
-    private BigDecimal subtotal;
     private BigDecimal total;
 }
