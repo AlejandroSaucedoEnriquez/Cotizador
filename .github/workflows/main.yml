@@ -17,8 +17,8 @@ jobs:
       # Obtiene una copia del repositorio
     - uses: actions/checkout@v4
       
-    - name: Configura el JDK 17
-      uses: actions/setup-java@v2 
+    - name: Instala el java 17
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'adopt'
