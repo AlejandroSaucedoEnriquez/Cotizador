@@ -17,26 +17,21 @@ jobs:
       # Obtiene una copia del repositorio
     - uses: actions/checkout@v2
       
-      # Configura el JDK 17 para el proyecto
     - name: Configura el JDK 17
       uses: actions/setup-java@v2 
       with:
         java-version: '17'
         distribution: 'adopt'
 
-      # Usa chmod +x para darle permisos de ejecución a gradlew
-    - name: Grant execute permission for gradlew
+    - name: Da permisos de ejecución a gradlew
       run: chmod +x gradlew
 
-      # Construye la aplicación con gradle
-    - name: Build with Gradle
+    - name: Construye la aplicación con gradle
       run: ./gradlew build
 
-      # Ejecuta la aplicación
-    - name: Start application
+    - name: Se inicia la aplicación
       run: ./gradlew bootRun &
       shell: bash
       
-      # En caso de haber, ejecuta las pruebas unitarias
-    - name: Run tests
+    - name: Realiza las pruebas
       run: ./gradlew test
