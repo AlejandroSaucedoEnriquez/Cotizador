@@ -18,13 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 @RequestMapping("/clientes")
+@CrossOrigin("http://127.0.0.1:5500/")
 public class ClienteController {
 
     @Autowired
     private ClienteService service;
 
     @Operation(summary = "Obtiene una lista de todos los clientes")
-    @CrossOrigin("http://127.0.0.1:5500/")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClienteDTO> findAll() {
@@ -33,7 +33,6 @@ public class ClienteController {
 
     // Crear Cliente
     @Operation(summary = "Crea un nuevo cliente")
-    @CrossOrigin("http://127.0.0.1:5500/")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteDTO save(@Valid @RequestBody CreateClienteDTO data) {
@@ -44,7 +43,6 @@ public class ClienteController {
 
     // Actualizar
     @Operation(summary = "Sustituir datos del cliente por Id")
-    @CrossOrigin("http://127.0.0.1:5500/")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ClienteDTO update(@PathVariable long id, @Valid @RequestBody UpdateClienteDTO data) {
@@ -55,7 +53,6 @@ public class ClienteController {
 
     // Obtener por ID
     @Operation(summary = "Obtiene un cliente por Id")
-    @CrossOrigin("http://127.0.0.1:5500/")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ClienteDTO findById(@PathVariable long id) {
@@ -65,7 +62,6 @@ public class ClienteController {
 
     // Eliminar
     @Operation(summary = "Eliminar un cliente por Id")
-    @CrossOrigin("http://127.0.0.1:5500/")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
