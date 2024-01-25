@@ -1,4 +1,4 @@
-name: Java CI
+name: Cotizador CI
 
 # Ejecuta el flujo de trabajo en la rama main, cada que se haga un push o un pull request
 # utilizando un entorno Ubuntu
