@@ -1,5 +1,5 @@
 # Vista general
-El motivo de este proyecto es crear una API que pueda utilizarse para almacenar los datos y cotizar equipos de gimnasios.
+El motivo de este proyecto es crear una API que pueda utilizarse para almacenar los datos de los clientes y equipos para gimnasios, además de realizar la cotización para cada cliente.
 
 # Requisitos
 Para ejecutar el proyecto necesitas:
