@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 @RequestMapping("/productos")
+@CrossOrigin("http://127.0.0.1:5500/")
 public class ProductoController {
     @Autowired
     private ProductoService service;
