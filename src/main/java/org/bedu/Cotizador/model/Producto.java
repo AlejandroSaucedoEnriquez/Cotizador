@@ -38,5 +38,4 @@ public class Producto {
 
     @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
     private ItemCotizacion itemCotizacion;
-
 }

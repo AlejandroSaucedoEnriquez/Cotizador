@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Data
-@AllArgsConstructor
 public class ProductoDTO {
     @Schema(description = "Identificador del producto", example = "30")
     private int id;

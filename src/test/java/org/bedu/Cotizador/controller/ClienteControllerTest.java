@@ -52,11 +52,11 @@ public class ClienteControllerTest {
     @Test
     public void saveCliente_ReturnsCreatedStatus() throws Exception {
         CreateClienteDTO createClienteDTO = new CreateClienteDTO();
-        createClienteDTO.setNombre("Nombre");
-        createClienteDTO.setApellido("Apellido");
-        createClienteDTO.setDireccion("Dirección");
-        createClienteDTO.setEmail("correo@example.com");
-        createClienteDTO.setTelefono("1234567890");
+        createClienteDTO.setNombre("Carlos");
+        createClienteDTO.setApellido("Martinez");
+        createClienteDTO.setDireccion("Coyoacan");
+        createClienteDTO.setEmail("carlosm@example.com");
+        createClienteDTO.setTelefono("5533221155");
 
         ClienteDTO clienteDTO = new ClienteDTO();
         given(clienteService.save(any(CreateClienteDTO.class))).willReturn(clienteDTO);

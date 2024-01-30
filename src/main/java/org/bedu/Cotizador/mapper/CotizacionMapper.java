@@ -11,6 +11,4 @@ public interface CotizacionMapper {
 
     @Mapping(target = "clienteId", source = "cliente.id")
     CotizacionDTO toDTO (Cotizacion entity);
-
-
 }
