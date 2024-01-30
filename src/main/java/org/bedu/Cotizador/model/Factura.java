@@ -1,10 +1,11 @@
 package org.bedu.Cotizador.model;
 
 import lombok.Data;
-import org.bedu.Cotizador.dto.CotizacionDTO;
-import org.bedu.Cotizador.dto.FacturaDTO;
 
 import java.math.BigDecimal;
+
+import org.bedu.Cotizador.dto.CotizacionDTO;
+import org.bedu.Cotizador.dto.FacturaDTO;
 
 @Data
 public class Factura {
