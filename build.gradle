@@ -5,7 +5,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'org.asciidoctor.jvm.convert' version '3.3.2'
 	id "io.freefair.lombok" version "8.4"
-
+	id "jacoco"
 }
 
 group = 'org.bedu'
@@ -49,6 +49,27 @@ dependencies {
 tasks.named('test') {
 	outputs.dir snippetsDir
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+//habilita el reporte de jacoco por XML para que Sonarqube lo analice
+jacocoTestReport{
+	reports {
+		xml.required = true
+	}
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it,
+					exclude: [
+							'org/bedu/Cotizador/model/**',
+							'org/bedu/Cotizador/dto/**',
+							'org/bedu/Cotizador/mapper/**',
+							'org/bedu/Cotizador/exception/**',
+							'org/bedu/Application.class'
+					]
+			)
+		}))
+	}
 }
 
 tasks.named('asciidoctor') {
@@ -58,4 +79,17 @@ tasks.named('asciidoctor') {
 
 test{
 	useJUnitPlatform()
+	jacoco {
+		excludes = [
+		        'org.bedu.Cotizador.model.*',
+		        'org.bedu.Cotizador.dto.*',
+		        'org.bedu.Cotizador.mapper.*',
+				'org.bedu.Cotizador.exception',
+		        'org.bedu.Cotizador.Application'
+		]
+	}
+}
+
+tasks.named('sonar') {
+	dependsOn test
 }
