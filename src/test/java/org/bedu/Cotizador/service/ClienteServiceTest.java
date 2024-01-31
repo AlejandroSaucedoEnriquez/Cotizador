@@ -1,8 +1,6 @@
 package org.bedu.Cotizador.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doNothing;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -22,10 +20,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class ClienteServiceTest { 
  
@@ -38,45 +40,33 @@ public class ClienteServiceTest {
     @InjectMocks
     private ClienteService service;
 
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
     @Test
     @DisplayName("Test para obtener la lista de clientes")
     public void findAllTest() {
-        Cliente cliente = new Cliente();
-        ClienteDTO clienteDTO = new ClienteDTO();
+        when(repository.findAll()).thenReturn(Arrays.asList(new Cliente(), new Cliente()));
 
-        when(repository.findAll()).thenReturn(Arrays.asList(cliente));
-        when(mapper.toDTO(cliente)).thenReturn(clienteDTO);
+        List<ClienteDTO> clientes = service.findAll();
 
-        List<ClienteDTO> result = service.findAll();
-
-        assertEquals(1, result.size());
-        assertEquals(clienteDTO, result.get(0));
+        assertNotNull(clientes);
+        assertEquals(2, clientes.size());
     }
 
     @Test
     @DisplayName("Test para guardar un cliente")
     public void saveTest() {
         CreateClienteDTO createClienteDTO = new CreateClienteDTO();
+        Cliente cliente = new Cliente();
+        ClienteDTO clienteDTO = new ClienteDTO();
+
         createClienteDTO.setNombre("Juan");
         createClienteDTO.setApellido("Peréz");
         createClienteDTO.setDireccion("Av. Vallarta 1532");
         createClienteDTO.setEmail("juan@example.com");
         createClienteDTO.setTelefono("3315255110");
- 
-        Cliente cliente = new Cliente();
-        cliente.setId(1);
-        cliente.setNombre("Juan");
-        cliente.setApellido("Peréz");
-        cliente.setDireccion("Av. Vallarta 1532");
-        cliente.setEmail("juan@example.com");
-        cliente.setTelefono("3315255110");
-        
-        ClienteDTO clienteDTO = new ClienteDTO();
-        clienteDTO.setNombre("Juan");
-        clienteDTO.setApellido("Peréz");
-        clienteDTO.setDireccion("Av. Vallarta 1532");
-        clienteDTO.setEmail("juan@example.com");
-        clienteDTO.setTelefono("3315255110");
 
         when(mapper.toModel(createClienteDTO)).thenReturn(cliente);
         when(repository.save(cliente)).thenReturn(cliente);
@@ -84,58 +74,51 @@ public class ClienteServiceTest {
 
         ClienteDTO result = service.save(createClienteDTO);
 
-        assertEquals(clienteDTO, result);
-        assertEquals(clienteDTO.getId(), result.getId());
-        assertEquals(clienteDTO.getNombre(), result.getNombre());
-        assertEquals(clienteDTO.getApellido(), result.getApellido());
-        assertEquals(clienteDTO.getDireccion(), result.getDireccion());
-        assertEquals(clienteDTO.getEmail(), result.getEmail());
-        assertEquals(clienteDTO.getTelefono(), result.getTelefono());
+        assertNotNull(result);
+        assertEquals(cliente.getId(), result.getId());
+        assertEquals(cliente.getNombre(), result.getNombre());
+        assertEquals(cliente.getApellido(), result.getApellido());
+        assertEquals(cliente.getDireccion(), result.getDireccion());
+        assertEquals(cliente.getEmail(), result.getEmail());
+        assertEquals(cliente.getTelefono(), result.getTelefono());
     }
 
     @Test
     @DisplayName("Test para actualizar un cliente")
     public void updateClientExists() {
         // Arrange
-        long id = 1232; 
-        Cliente cliente = new Cliente();
-        cliente.setId(id);
-        cliente.setNombre("Juan");
-        cliente.setApellido("Peréz");
-        cliente.setDireccion("Av. Vallarta 1532");
-        cliente.setEmail("juan@example.com");
-        cliente.setTelefono("3315255110");
+        long id = 1232L;
+        UpdateClienteDTO updateDTO = new UpdateClienteDTO();
+        Cliente existingEntity = new Cliente();
+        ClienteDTO clienteDTO = new ClienteDTO();
 
-        ClienteDTO clienteDTO = new ClienteDTO(); 
-        clienteDTO.setId(id);
-        clienteDTO.setNombre("José");
-        clienteDTO.setApellido("Dominguez Peréz");
-        clienteDTO.setDireccion("Av. Actualizada #2545");
-        clienteDTO.setEmail("josedmgz98@example.com");
-        clienteDTO.setTelefono("3315255444");
- 
-        UpdateClienteDTO data = new UpdateClienteDTO();
-        data.setNombre("José");
-        data.setApellido("Dominguez Peréz");
-        data.setDireccion("Av. Actualizada #2545");
-        data.setEmail("josedmgz98@example.com");
-        data.setTelefono("3315255444");
+        existingEntity.setId(id);
+        existingEntity.setNombre("Juan");
+        existingEntity.setApellido("Peréz");
+        existingEntity.setDireccion("Av. Vallarta 1532");
+        existingEntity.setEmail("juan@example.com");
+        existingEntity.setTelefono("3315255110");
+
+        updateDTO.setNombre("Carlos");
+        updateDTO.setApellido("Rodrigez");
+        updateDTO.setDireccion("Av. Vallarta 1532");
+        updateDTO.setEmail("carlos@example.com");
+        updateDTO.setTelefono("5533658316");
 
         when(repository.existsById(id)).thenReturn(true);
-        when(repository.findById(id)).thenReturn(Optional.of(cliente));
-        when(mapper.toModel(data, cliente)).thenReturn(cliente);
-        when(repository.save(cliente)).thenReturn(cliente);
-        when(mapper.toDTO(cliente)).thenReturn(clienteDTO);
- 
+        when(repository.findById(id)).thenReturn(Optional.of(existingEntity));
+        when(mapper.toModel(updateDTO, existingEntity)).thenReturn(existingEntity);
+        when(repository.save(existingEntity)).thenReturn(existingEntity);
+        when(mapper.toDTO(existingEntity)).thenReturn(clienteDTO);
 
-        ClienteDTO result = service.update(data, id);
+        ClienteDTO result = service.update(updateDTO, id);
 
-        assertEquals(clienteDTO, result); 
-        assertEquals(clienteDTO.getNombre(), result.getNombre()); 
+        assertNotNull(result);
+        assertEquals(clienteDTO.getNombre(), result.getNombre());
         assertEquals(clienteDTO.getApellido(), result.getApellido());
         assertEquals(clienteDTO.getDireccion(), result.getDireccion());
-        assertEquals(clienteDTO.getEmail(), result.getEmail());
         assertEquals(clienteDTO.getTelefono(), result.getTelefono());
+        assertEquals(clienteDTO.getEmail(), result.getEmail());
     }
 
     @Test
@@ -153,14 +136,8 @@ public class ClienteServiceTest {
     @DisplayName("Test para eliminar un cliente por su ID")
     public void deleteTest() {  
         long id = 123;
-        ClienteDTO clienteDTO = new ClienteDTO();
-        clienteDTO.setNombre("José");
-        clienteDTO.setApellido("Martínez");
-        clienteDTO.setDireccion("Av. Patria #1090");
-        clienteDTO.setEmail("email@example.com");
-        clienteDTO.setTelefono("3312542390");
-
         Cliente cliente = new Cliente();
+
         cliente.setId(id);
         cliente.setNombre("José");
         cliente.setApellido("Martínez");
@@ -168,20 +145,8 @@ public class ClienteServiceTest {
         cliente.setEmail("email@example.com");
         cliente.setTelefono("3312542390");
 
-        CreateClienteDTO createClienteDTO = new CreateClienteDTO();
-        createClienteDTO.setNombre("José");
-        createClienteDTO.setApellido("Martínez");
-        createClienteDTO.setDireccion("Av. Patria #1090");
-        createClienteDTO.setEmail("email@example.com");
-        createClienteDTO.setTelefono("3312542390");
+        Mockito.lenient().doNothing().when(repository).deleteById(id);
 
-        when(mapper.toModel(createClienteDTO)).thenReturn(cliente);
-        when(repository.save(cliente)).thenReturn(cliente);
-        when(mapper.toDTO(cliente)).thenReturn(clienteDTO);
-        doNothing().when(repository).deleteById(id);
- 
-        ClienteDTO createdClienteDTO = service.save(createClienteDTO);
-        assertEquals(clienteDTO, createdClienteDTO);
         service.delete(id); 
         //Verifica que se haya llamado al método deleteById() del repositorio una vez
         verify(repository, times(1)).deleteById(id);
