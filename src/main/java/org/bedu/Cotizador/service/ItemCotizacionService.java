@@ -36,47 +36,56 @@ public class ItemCotizacionService {
     private ItemCotizacionMapper itemCotizacionMapper;
 
     public ItemCotizacionDTO addItemCotizacion(CreateItemCotizacionDTO createItemCotizacionDTO, Long cotizacionId) {
-        // Recuperar la cotización
-        Cotizacion cotizacion = cotizacionRepository.findById(cotizacionId)
-                .orElseThrow(() -> new EntityNotFoundException("Cotizacion no encontrada"));
+        Cotizacion cotizacion = getCotizacionById(cotizacionId);
+        Producto producto = getProductoById(createItemCotizacionDTO.getProductoId());
 
-        // Recuperar el producto
-        Producto producto = productoRepository.findById(createItemCotizacionDTO.getProductoId())
-                .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado"));
-
-        // Verificar si ya existe un ítem con el mismo PRODUCTO_ID para la cotización
-        Optional<ItemCotizacion> existingItem = cotizacion.getItems().stream()
-                .filter(item -> item.getProducto().equals(producto))
-                .findFirst();
+        Optional<ItemCotizacion> existingItem = findExistingItem(cotizacion, producto);
 
         if (existingItem.isPresent()) {
-            // Si ya existe, actualizar la cantidad
-            ItemCotizacion itemToUpdate = existingItem.get();
-            itemToUpdate.setCantidad(itemToUpdate.getCantidad() + createItemCotizacionDTO.getCantidad());
-            itemToUpdate.setSubtotal(itemToUpdate.getPrecioUnitario().multiply(BigDecimal.valueOf(itemToUpdate.getCantidad())));
-            return itemCotizacionMapper.toDTO(itemToUpdate);
+            return updateExistingItem(existingItem.get(), createItemCotizacionDTO);
         } else {
-            // Si no existe, crear un nuevo ítem
-            ItemCotizacion itemCotizacion = new ItemCotizacion();
-            itemCotizacion.setCotizacion(cotizacion);
-            itemCotizacion.setProducto(producto);
-            itemCotizacion.setCantidad(createItemCotizacionDTO.getCantidad());
-
-            // Calcular el subtotal
-            BigDecimal precioUnitario = producto.getPrecio();
-            BigDecimal subtotal = precioUnitario.multiply(BigDecimal.valueOf(createItemCotizacionDTO.getCantidad()));
-            itemCotizacion.setPrecioUnitario(precioUnitario);
-            itemCotizacion.setSubtotal(subtotal);
-
-            // Guardar el ItemCotizacion
-            itemCotizacion = itemCotizacionRepository.save(itemCotizacion);
-
-            // Actualizar la cotización con el nuevo ItemCotizacion
-            cotizacion.getItems().add(itemCotizacion);
-            cotizacionRepository.save(cotizacion);
-
-            // Devolver el DTO del ItemCotizacion creado
-            return itemCotizacionMapper.toDTO(itemCotizacion);
+            return createNewItem(cotizacion, producto, createItemCotizacionDTO);
         }
+    }
+
+    private Cotizacion getCotizacionById(Long cotizacionId) {
+        return cotizacionRepository.findById(cotizacionId)
+                .orElseThrow(() -> new EntityNotFoundException("Cotizacion no encontrada"));
+    }
+
+    private Producto getProductoById(Long productoId) {
+        return productoRepository.findById(productoId)
+                .orElseThrow(() -> new EntityNotFoundException("Producto no encontrado"));
+    }
+
+    private Optional<ItemCotizacion> findExistingItem(Cotizacion cotizacion, Producto producto) {
+        return cotizacion.getItems().stream()
+                .filter(item -> item.getProducto().equals(producto))
+                .findFirst();
+    }
+
+    private ItemCotizacionDTO updateExistingItem(ItemCotizacion existingItem, CreateItemCotizacionDTO createItemCotizacionDTO) {
+        existingItem.setCantidad(existingItem.getCantidad() + createItemCotizacionDTO.getCantidad());
+        existingItem.setSubtotal(existingItem.getPrecioUnitario().multiply(BigDecimal.valueOf(existingItem.getCantidad())));
+        return itemCotizacionMapper.toDTO(itemCotizacionRepository.save(existingItem));
+    }
+
+    private ItemCotizacionDTO createNewItem(Cotizacion cotizacion, Producto producto, CreateItemCotizacionDTO createItemCotizacionDTO) {
+        ItemCotizacion newItem = new ItemCotizacion();
+        newItem.setCotizacion(cotizacion);
+        newItem.setProducto(producto);
+        newItem.setCantidad(createItemCotizacionDTO.getCantidad());
+
+        BigDecimal precioUnitario = producto.getPrecio();
+        BigDecimal subtotal = precioUnitario.multiply(BigDecimal.valueOf(createItemCotizacionDTO.getCantidad()));
+        newItem.setPrecioUnitario(precioUnitario);
+        newItem.setSubtotal(subtotal);
+
+        newItem = itemCotizacionRepository.save(newItem);
+
+        cotizacion.getItems().add(newItem);
+        cotizacionRepository.save(cotizacion);
+
+        return itemCotizacionMapper.toDTO(newItem);
     }
 }
