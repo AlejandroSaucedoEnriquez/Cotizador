@@ -1,6 +1,5 @@
 package org.bedu.Cotizador.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.bedu.Cotizador.dto.ProductoDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateProductoDTO;
 import org.bedu.Cotizador.dto.updateDTO.UpdateProductoDTO;
