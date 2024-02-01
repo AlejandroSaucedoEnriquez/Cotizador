@@ -45,9 +45,6 @@ public class ClienteService {
      * Si no existe se lanza una excepción.
      */
     public ClienteDTO update(UpdateClienteDTO data, long id){
-        if (!repository.existsById(id)) {
-            throw new EntityNotFoundException("No se encontró un cliente con el ID proporcionado: " + id);
-        }
 
         Optional<Cliente> entity = repository.findById(id);
         if(entity.isPresent()){
