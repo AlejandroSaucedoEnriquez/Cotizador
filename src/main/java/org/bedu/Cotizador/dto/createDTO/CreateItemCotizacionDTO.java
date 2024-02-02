@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CreateItemCotizacionDTO {
     @Schema(description = "Identificador del producto para la Cotizacion", example = "5")
     @NotNull(message = "El producto no puede ser nulo")

@@ -65,12 +65,12 @@ public class ItemCotizacionService {
     }
 
     private ItemCotizacionDTO updateExistingItem(ItemCotizacion existingItem, CreateItemCotizacionDTO createItemCotizacionDTO) {
-        existingItem.setCantidad(existingItem.getCantidad() + createItemCotizacionDTO.getCantidad());
+        existingItem.setCantidad(createItemCotizacionDTO.getCantidad());
         existingItem.setSubtotal(existingItem.getPrecioUnitario().multiply(BigDecimal.valueOf(existingItem.getCantidad())));
         return itemCotizacionMapper.toDTO(itemCotizacionRepository.save(existingItem));
     }
 
-    public ItemCotizacionDTO createNewItem(Cotizacion cotizacion, Producto producto, CreateItemCotizacionDTO createItemCotizacionDTO) {
+    private ItemCotizacionDTO createNewItem(Cotizacion cotizacion, Producto producto, CreateItemCotizacionDTO createItemCotizacionDTO) {
         ItemCotizacion newItem = new ItemCotizacion();
         newItem.setCotizacion(cotizacion);
         newItem.setProducto(producto);
