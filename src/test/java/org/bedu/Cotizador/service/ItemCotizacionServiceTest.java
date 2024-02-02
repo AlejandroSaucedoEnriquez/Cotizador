@@ -121,7 +121,7 @@ public class ItemCotizacionServiceTest {
     }
 
     @Test
-    @DisplayName("Test que crea un nuevo item por que no existe")
+    @DisplayName("Test actualiza un item que ya existe")
     public void addItemCotizacionItemIsPresent() {
         Cotizacion cotizacion = createCotizacionOneItem();
 
