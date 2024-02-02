@@ -7,7 +7,6 @@ import org.bedu.Cotizador.model.Cliente;
 import org.bedu.Cotizador.model.Cotizacion;
 import org.bedu.Cotizador.model.ItemCotizacion;
 import org.bedu.Cotizador.model.Producto;
-import org.bedu.Cotizador.repository.ClienteRepository;
 import org.bedu.Cotizador.repository.CotizacionRepository;
 import org.bedu.Cotizador.repository.ItemCotizacionRepository;
 import org.bedu.Cotizador.repository.ProductoRepository;
