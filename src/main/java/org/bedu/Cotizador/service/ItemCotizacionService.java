@@ -70,7 +70,7 @@ public class ItemCotizacionService {
         return itemCotizacionMapper.toDTO(itemCotizacionRepository.save(existingItem));
     }
 
-    private ItemCotizacionDTO createNewItem(Cotizacion cotizacion, Producto producto, CreateItemCotizacionDTO createItemCotizacionDTO) {
+    public ItemCotizacionDTO createNewItem(Cotizacion cotizacion, Producto producto, CreateItemCotizacionDTO createItemCotizacionDTO) {
         ItemCotizacion newItem = new ItemCotizacion();
         newItem.setCotizacion(cotizacion);
         newItem.setProducto(producto);
