@@ -148,7 +148,7 @@ public class ItemCotizacionServiceTest {
 
     }
 
-    public Cotizacion createEmptyCotizacion() {
+    private Cotizacion createEmptyCotizacion() {
         Cliente cliente = new Cliente();
         cliente.setId(1);
         cliente.setNombre("Juan");
@@ -170,7 +170,7 @@ public class ItemCotizacionServiceTest {
         return cotizacion;
     }
 
-    public Cotizacion createCotizacionOneItem() {
+    private Cotizacion createCotizacionOneItem() {
         Cotizacion cotizacion = createEmptyCotizacion();
 
         Producto producto = new Producto();
