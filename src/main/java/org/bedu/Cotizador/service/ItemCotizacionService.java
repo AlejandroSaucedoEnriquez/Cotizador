@@ -48,7 +48,7 @@ public class ItemCotizacionService {
         }
     }
 
-    private Cotizacion getCotizacionById(Long cotizacionId) {
+    public Cotizacion getCotizacionById(Long cotizacionId) {
         return cotizacionRepository.findById(cotizacionId)
                 .orElseThrow(() -> new EntityNotFoundException("Cotizacion no encontrada"));
     }

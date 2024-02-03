@@ -16,10 +16,12 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
 public class CotizacionService {
+
     @Autowired
     private CotizacionRepository cotizacionRepository;
 
@@ -27,46 +29,48 @@ public class CotizacionService {
     private ClienteRepository clienteRepository;
 
     @Autowired
-    private ItemCotizacionService itemCotizacionService;
-
-    @Autowired
     private CotizacionMapper cotizacionMapper;
 
-    public CotizacionDTO crearCotizacion(CreateCotizacionDTO createCotizacionDTO) {
-        // Recuperar el cliente
-        Cliente cliente = clienteRepository.findById(createCotizacionDTO.getClienteId())
-                .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
+    @Autowired
+    private ItemCotizacionService itemCotizacionService;
 
-        // Crear la cotización
+    public CotizacionDTO crearCotizacion(CreateCotizacionDTO createCotizacionDTO) {
+        Cliente cliente = obtenerCliente(createCotizacionDTO.getClienteId());
+        Cotizacion cotizacion = crearCotizacionBase(cliente);
+        BigDecimal total = calcularTotal(cotizacion, createCotizacionDTO.getItems());
+        actualizarCotizacionConTotal(cotizacion, total);
+        return mapearCotizacion(cotizacion);
+    }
+
+    private Cliente obtenerCliente(Long clienteId) {
+        return clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
+    }
+
+    private Cotizacion crearCotizacionBase(Cliente cliente) {
         Cotizacion cotizacion = new Cotizacion();
         cotizacion.setCliente(cliente);
-
-        // Inicializar la lista de ítems de cotización
         cotizacion.setItems(new ArrayList<>());
+        return cotizacionRepository.saveAndFlush(cotizacion);
+    }
 
-        // Guardar la cotización sin ítems
-        cotizacion = cotizacionRepository.saveAndFlush(cotizacion);
-
-        // Calcular el total y agregar los ítems de cotización
+    private BigDecimal calcularTotal(Cotizacion cotizacion, List<CreateItemCotizacionDTO> items) {
         BigDecimal total = BigDecimal.ZERO;
-
-        for (CreateItemCotizacionDTO itemDTO : createCotizacionDTO.getItems()) {
+        for (CreateItemCotizacionDTO itemDTO : items) {
             ItemCotizacionDTO nuevoItem = itemCotizacionService.addItemCotizacion(itemDTO, cotizacion.getId());
             total = total.add(nuevoItem.getSubtotal());
         }
+        return total;
+    }
 
+    private void actualizarCotizacionConTotal(Cotizacion cotizacion, BigDecimal total) {
         cotizacion.setTotal(total);
+        cotizacionRepository.save(cotizacion);
+    }
 
-        // Guardar la cotización con los ítems
-        cotizacion = cotizacionRepository.save(cotizacion);
-
-        // Obtener el DTO de la cotización creada (incluyendo información del cliente)
+    private CotizacionDTO mapearCotizacion(Cotizacion cotizacion) {
         CotizacionDTO cotizacionDTO = cotizacionMapper.toDTO(cotizacion);
-
-        // Asignar el subtotal calculado al DTO
-        cotizacionDTO.setTotal(total);
-
-        // Devolver el DTO de la cotización creada
+        cotizacionDTO.setTotal(cotizacion.getTotal());
         return cotizacionDTO;
     }
 }
