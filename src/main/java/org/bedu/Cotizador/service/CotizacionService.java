@@ -47,7 +47,7 @@ public class CotizacionService {
                 .orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
     }
 
-    private Cotizacion crearCotizacionBase(Cliente cliente) {
+    public Cotizacion crearCotizacionBase(Cliente cliente) {
         Cotizacion cotizacion = new Cotizacion();
         cotizacion.setCliente(cliente);
         cotizacion.setItems(new ArrayList<>());

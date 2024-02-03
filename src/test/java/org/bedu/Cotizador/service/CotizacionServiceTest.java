@@ -6,6 +6,7 @@ import org.bedu.Cotizador.dto.ItemCotizacionDTO;
 import org.bedu.Cotizador.dto.ProductoDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateItemCotizacionDTO;
+import org.bedu.Cotizador.mapper.ItemCotizacionMapper;
 import org.bedu.Cotizador.model.Cliente;
 import org.bedu.Cotizador.model.Cotizacion;
 import org.bedu.Cotizador.model.ItemCotizacion;
@@ -13,6 +14,7 @@ import org.bedu.Cotizador.model.Producto;
 import org.bedu.Cotizador.repository.ClienteRepository;
 import org.bedu.Cotizador.repository.CotizacionRepository;
 import org.bedu.Cotizador.repository.ItemCotizacionRepository;
+import org.bedu.Cotizador.repository.ProductoRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,9 +31,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -47,11 +49,17 @@ public class CotizacionServiceTest {
     @MockBean
     private ItemCotizacionRepository itemCotizacionRepository;
 
-    @Autowired
+    @InjectMocks
     private CotizacionService service;
 
     @InjectMocks
     private ItemCotizacionService itemCotizacionService;
+
+    @MockBean
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private ItemCotizacionMapper mapper;
 
     @Test
     @DisplayName("Service should be injected")
@@ -73,32 +81,40 @@ public class CotizacionServiceTest {
 
     @Test
     @DisplayName("Test crea una cotizacion con dos productos")
-    void crearCotizacionTwoProducts() {
+    void crearCotizacionOneProducts() {
         long id = 1;
         Cliente cliente = createCliente(id);
-        Producto producto1 = createFirstProducto();
-        Producto producto2 = createSecondProducto();
+
+        Producto producto1 = new Producto();
+
+        producto1.setId(1L);
+        producto1.setNombre("Mancuerna 5 kg");
+        producto1.setSku("28394");
+        producto1.setPrecio(new BigDecimal("500"));
+        producto1.setStock(25);
+        producto1.setDescripcion("Mancuerna hexagoanl de 5 kg.");
+        producto1.setCategoria("Peso libre.");
+        producto1.setMarca("Tryman");
+        producto1.setModelo("sg563");
+
         List<CreateItemCotizacionDTO> createItemList = new ArrayList<>();
         CreateItemCotizacionDTO createItemCotizacionDTO1 = new CreateItemCotizacionDTO(producto1.getId(), 4);
-        CreateItemCotizacionDTO createItemCotizacionDTO2 = new CreateItemCotizacionDTO(producto2.getId(), 2);
         createItemList.add(createItemCotizacionDTO1);
-        createItemList.add(createItemCotizacionDTO2);
 
         ItemCotizacionDTO itemCotizacionDTO1 = createFirstItemDTO(productoToDTO(producto1), createItemCotizacionDTO1);
-        ItemCotizacionDTO itemCotizacionDTO2 = createSecondItemDTO(productoToDTO(producto2), createItemCotizacionDTO2);
+
+        Cotizacion emptyCotizacion = createEmptyCotizacion(cliente);
 
         CreateCotizacionDTO createCotizacionDTO = new CreateCotizacionDTO(cliente.getId(), createItemList);
 
         List<ItemCotizacion> itemCotizacions = new ArrayList<>();
 
         Cotizacion cotizacion = new Cotizacion();
-        cotizacion.setId(1L);
+        cotizacion.setId(0L);
         cotizacion.setCliente(cliente);
 
         ItemCotizacion itemCotizacion1 = DtoToEntity(itemCotizacionDTO1, cotizacion, producto1);
-        ItemCotizacion itemCotizacion2 = DtoToEntity(itemCotizacionDTO2, cotizacion, producto2);
         itemCotizacions.add(itemCotizacion1);
-        itemCotizacions.add(itemCotizacion2);
 
         BigDecimal total = BigDecimal.ZERO;
         for (ItemCotizacion item : itemCotizacions) {
@@ -109,10 +125,31 @@ public class CotizacionServiceTest {
         cotizacion.setFecha(LocalDate.now());
         cotizacion.setTotal(total);
 
+        CotizacionDTO cotizacionDTO = new CotizacionDTO();
+        cotizacionDTO.setId(cotizacion.getId());
+        cotizacionDTO.setClienteId(cotizacion.getCliente().getId());
+
+        List<ItemCotizacionDTO> items = new ArrayList<>();
+        items.add(itemCotizacionDTO1);
+
+        cotizacionDTO.setItems(items);
+        cotizacionDTO.setFecha(cotizacion.getFecha());
+        cotizacionDTO.setTotal(cotizacion.getTotal());
+
         System.out.println("Imprimir cotizacion : "+cotizacion);
+        System.out.println("Imprimir item "+ itemCotizacion1);
+
+        emptyCotizacion.setItems(itemCotizacions);
 
         when(clienteRepository.findById(anyLong())).thenReturn(Optional.of(cliente));
-        when(repository.findById(anyLong())).thenReturn(Optional.of(cotizacion));
+        when(repository.saveAndFlush(any(Cotizacion.class))).thenReturn(emptyCotizacion);
+
+        when(itemCotizacionService.cotizacionRepository.findById(anyLong())).thenReturn(Optional.of(emptyCotizacion));
+        when(itemCotizacionService.productoRepository.findById(anyLong())).thenReturn(Optional.of(producto1));
+        when(itemCotizacionRepository.save(any(ItemCotizacion.class))).thenReturn(itemCotizacion1);
+
+        when(itemCotizacionService.addItemCotizacion(any(CreateItemCotizacionDTO.class), eq(0L))).thenReturn(itemCotizacionDTO1);
+
         when(repository.save(any(Cotizacion.class))).thenReturn(cotizacion);
 
         CotizacionDTO result = service.crearCotizacion(createCotizacionDTO);
@@ -133,35 +170,35 @@ public class CotizacionServiceTest {
     }
 
     private Producto createFirstProducto() {
-        Producto producto = new Producto();
+        Producto producto1 = new Producto();
 
-        producto.setId(1L);
-        producto.setNombre("Mancuerna 5 kg");
-        producto.setSku("28394");
-        producto.setPrecio(new BigDecimal("500"));
-        producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto.setCategoria("Peso libre.");
-        producto.setMarca("Tryman");
-        producto.setModelo("sg563");
+        producto1.setId(1L);
+        producto1.setNombre("Mancuerna 5 kg");
+        producto1.setSku("28394");
+        producto1.setPrecio(new BigDecimal("500"));
+        producto1.setStock(25);
+        producto1.setDescripcion("Mancuerna hexagoanl de 5 kg.");
+        producto1.setCategoria("Peso libre.");
+        producto1.setMarca("Tryman");
+        producto1.setModelo("sg563");
 
-        return producto;
+        return producto1;
     }
 
     private Producto createSecondProducto() {
-        Producto producto = new Producto();
+        Producto producto2 = new Producto();
 
-        producto.setId(2L);
-        producto.setNombre("Mancuerna 10 kg");
-        producto.setSku("4233");
-        producto.setPrecio(new BigDecimal("650"));
-        producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl de 10 kg.");
-        producto.setCategoria("Peso libre.");
-        producto.setMarca("Tryman");
-        producto.setModelo("sg573");
+        producto2.setId(2L);
+        producto2.setNombre("Mancuerna 10 kg");
+        producto2.setSku("4233");
+        producto2.setPrecio(new BigDecimal("650"));
+        producto2.setStock(25);
+        producto2.setDescripcion("Mancuerna hexagoanl de 10 kg.");
+        producto2.setCategoria("Peso libre.");
+        producto2.setMarca("Tryman");
+        producto2.setModelo("sg573");
 
-        return producto;
+        return producto2;
     }
 
     private ProductoDTO productoToDTO (Producto producto) {
@@ -214,21 +251,14 @@ public class CotizacionServiceTest {
     }
 
     private Cotizacion createEmptyCotizacion(Cliente cliente) {
+        List<ItemCotizacion> items = new ArrayList<>();
+
         Cotizacion cotizacion = new Cotizacion();
-        cotizacion.setId(1L);
         cotizacion.setCliente(cliente);
-        cotizacion.setItems(new ArrayList<>());
+        cotizacion.setItems(items);
 
         System.out.println("Imprimir cotizacion vacia : " +cotizacion);
         return cotizacion;
     }
 
-    private BigDecimal calcularTotal(Cotizacion cotizacion, List<CreateItemCotizacionDTO> items) {
-        BigDecimal total = BigDecimal.ZERO;
-        for (CreateItemCotizacionDTO itemDTO : items) {
-            ItemCotizacionDTO nuevoItem = itemCotizacionService.addItemCotizacion(itemDTO, cotizacion.getId());
-            total = total.add(nuevoItem.getSubtotal());
-        }
-        return total;
-    }
 }

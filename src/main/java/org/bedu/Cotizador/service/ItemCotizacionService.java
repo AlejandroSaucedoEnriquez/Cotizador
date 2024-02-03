@@ -27,10 +27,10 @@ public class ItemCotizacionService {
     private ItemCotizacionRepository itemCotizacionRepository;
 
     @Autowired
-    private ProductoRepository productoRepository;
+    public ProductoRepository productoRepository;
 
     @Autowired
-    private CotizacionRepository cotizacionRepository;
+    public CotizacionRepository cotizacionRepository;
 
     @Autowired
     private ItemCotizacionMapper itemCotizacionMapper;
