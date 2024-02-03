@@ -3,14 +3,12 @@ package org.bedu.Cotizador.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "items_cotizacion")
 public class ItemCotizacion {
@@ -34,4 +32,15 @@ public class ItemCotizacion {
 
     @Column
     private BigDecimal subtotal;
+
+    @Override
+    public String toString() {
+        return "ItemCotizacion{" +
+                "id=" + id +
+                ", producto=" + producto +
+                ", cantidad=" + cantidad +
+                ", precioUnitario=" + precioUnitario +
+                ", subtotal=" + subtotal +
+                '}';
+    }
 }

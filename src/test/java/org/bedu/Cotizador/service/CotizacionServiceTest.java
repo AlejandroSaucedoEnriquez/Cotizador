@@ -23,6 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -73,7 +74,8 @@ public class CotizacionServiceTest {
     @Test
     @DisplayName("Test crea una cotizacion con dos productos")
     void crearCotizacionTwoProducts() {
-        Cliente cliente = createCliente();
+        long id = 1;
+        Cliente cliente = createCliente(id);
         Producto producto1 = createFirstProducto();
         Producto producto2 = createSecondProducto();
         List<CreateItemCotizacionDTO> createItemList = new ArrayList<>();
@@ -87,31 +89,39 @@ public class CotizacionServiceTest {
 
         CreateCotizacionDTO createCotizacionDTO = new CreateCotizacionDTO(cliente.getId(), createItemList);
 
-        Cotizacion cotizacion = createEmptyCotizacion(cliente);
+        List<ItemCotizacion> itemCotizacions = new ArrayList<>();
 
-        BigDecimal total = calcularTotal(cotizacion, createCotizacionDTO.getItems());
+        Cotizacion cotizacion = new Cotizacion();
+        cotizacion.setId(1L);
+        cotizacion.setCliente(cliente);
 
+        ItemCotizacion itemCotizacion1 = DtoToEntity(itemCotizacionDTO1, cotizacion, producto1);
+        ItemCotizacion itemCotizacion2 = DtoToEntity(itemCotizacionDTO2, cotizacion, producto2);
+        itemCotizacions.add(itemCotizacion1);
+        itemCotizacions.add(itemCotizacion2);
+
+        BigDecimal total = BigDecimal.ZERO;
+        for (ItemCotizacion item : itemCotizacions) {
+            total = total.add(item.getSubtotal());
+        }
+
+        cotizacion.setItems(itemCotizacions);
+        cotizacion.setFecha(LocalDate.now());
         cotizacion.setTotal(total);
 
-        Cotizacion cotizacionFinal = new Cotizacion();
-        cotizacionFinal.setId(cotizacion.getId());
-        cotizacionFinal.setItems(cotizacion.getItems());
-        cotizacionFinal.setCliente(cotizacion.getCliente());
-        cotizacionFinal.setFecha(cotizacion.getFecha());
-        cotizacionFinal.setTotal(cotizacion.getTotal());
+        System.out.println("Imprimir cotizacion : "+cotizacion);
 
-        when(repository.findById(anyLong())).thenReturn(Optional.of(cotizacion));
-        when(itemCotizacionService.addItemCotizacion(any(CreateItemCotizacionDTO.class),anyLong())).thenReturn(itemCotizacionDTO1);
-        when(itemCotizacionService.addItemCotizacion(any(CreateItemCotizacionDTO.class),anyLong())).thenReturn(itemCotizacionDTO2);
+        when(clienteRepository.findById(anyLong())).thenReturn(Optional.of(cliente));
+        when(repository.save(any(Cotizacion.class))).thenReturn(cotizacion);
 
         CotizacionDTO result = service.crearCotizacion(createCotizacionDTO);
 
         assertNotNull(result);
     }
 
-    private Cliente createCliente() {
+    private Cliente createCliente(long id) {
         Cliente cliente = new Cliente();
-        cliente.setId(1L);
+        cliente.setId(id);
         cliente.setNombre("Juan");
         cliente.setApellido("Peréz");
         cliente.setDireccion("Av. Vallarta 1532");
@@ -204,9 +214,12 @@ public class CotizacionServiceTest {
 
     private Cotizacion createEmptyCotizacion(Cliente cliente) {
         Cotizacion cotizacion = new Cotizacion();
+        cotizacion.setId(1L);
         cotizacion.setCliente(cliente);
         cotizacion.setItems(new ArrayList<>());
-        return repository.saveAndFlush(cotizacion);
+
+        System.out.println("Imprimir cotizacion vacia : " +cotizacion);
+        return cotizacion;
     }
 
     private BigDecimal calcularTotal(Cotizacion cotizacion, List<CreateItemCotizacionDTO> items) {
