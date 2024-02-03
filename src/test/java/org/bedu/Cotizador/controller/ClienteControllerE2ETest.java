@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ClienteController.class)
-public class ClienteControllerTest {
+class ClienteControllerE2ETest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,7 +38,7 @@ public class ClienteControllerTest {
     private ClienteService clienteService;
 
     @Test
-    public void findAllClientes_ReturnsListOfClientes() throws Exception {
+   void findAllClientes_ReturnsListOfClientes() throws Exception {
         List<ClienteDTO> clientes = new ArrayList<>();
         clientes.add(new ClienteDTO());
         given(clienteService.findAll()).willReturn(clientes);
@@ -50,7 +50,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void saveCliente_ReturnsCreatedStatus() throws Exception {
+    void saveCliente_ReturnsCreatedStatus() throws Exception {
         CreateClienteDTO createClienteDTO = new CreateClienteDTO();
         createClienteDTO.setNombre("Carlos");
         createClienteDTO.setApellido("Martinez");
@@ -68,7 +68,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void updateCliente_ReturnsOkStatus() throws Exception {
+    void updateCliente_ReturnsOkStatus() throws Exception {
         long id = 1;
         UpdateClienteDTO updateClienteDTO = new UpdateClienteDTO();
         ClienteDTO clienteDTO = new ClienteDTO();
@@ -81,7 +81,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void findById_ReturnsCliente() throws Exception {
+    void findById_ReturnsCliente() throws Exception {
         long id = 1;
         ClienteDTO clienteDTO = new ClienteDTO();
         given(clienteService.findById(id)).willReturn(clienteDTO);
@@ -93,7 +93,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void deleteCliente_ReturnsNoContentStatus() throws Exception {
+    void deleteCliente_ReturnsNoContentStatus() throws Exception {
         long id = 1;
 
         mockMvc.perform(delete("/clientes/{id}", id))

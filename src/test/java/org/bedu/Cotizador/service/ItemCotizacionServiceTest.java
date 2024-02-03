@@ -32,7 +32,7 @@ import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class ItemCotizacionServiceTest {
+class ItemCotizacionServiceTest {
 
     @MockBean
     private ItemCotizacionRepository itemCotizacionRepository;
@@ -54,7 +54,7 @@ public class ItemCotizacionServiceTest {
 
     @Test
     @DisplayName("Test de error cuando no se inicializo la Cotizacion")
-    public void addItemCotizacionCotizacionDoesNotExist() {
+    void addItemCotizacionCotizacionDoesNotExist() {
         CreateItemCotizacionDTO createDTO = new CreateItemCotizacionDTO();
 
         Optional<Cotizacion> dummy = Optional.empty();
@@ -66,7 +66,7 @@ public class ItemCotizacionServiceTest {
 
     @Test
     @DisplayName("Test de error cuando no existe el producto")
-    public void addItemCotizacionProductoDoesNotExist() {
+    void addItemCotizacionProductoDoesNotExist() {
         CreateItemCotizacionDTO createDTO = new CreateItemCotizacionDTO();
 
         Cotizacion cotizacion = createEmptyCotizacion();
@@ -79,7 +79,7 @@ public class ItemCotizacionServiceTest {
 
     @Test
     @DisplayName("Test que crea un nuevo item por que no existe")
-    public void addItemCotizacionItemDoesNotPresent() {
+    void addItemCotizacionItemDoesNotPresent() {
         Producto producto = new Producto();
 
         producto.setId(1);
@@ -121,7 +121,7 @@ public class ItemCotizacionServiceTest {
 
     @Test
     @DisplayName("Test actualiza un item que ya existe")
-    public void addItemCotizacionItemIsPresent() {
+    void addItemCotizacionItemIsPresent() {
         Cotizacion cotizacion = createCotizacionOneItem();
 
         CreateItemCotizacionDTO updateItem = new CreateItemCotizacionDTO(1L, 9);

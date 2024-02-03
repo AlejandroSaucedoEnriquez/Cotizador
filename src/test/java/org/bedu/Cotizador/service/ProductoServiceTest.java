@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class ProductoServiceTest {
+class ProductoServiceTest {
 
     @MockBean
     private ProductoRepository repository;
@@ -42,7 +42,7 @@ public class ProductoServiceTest {
 
     @Test
     @DisplayName("Test para obtener la lista de productos")
-    public void findAllTest() {
+    void findAllTest() {
         List<Producto> productos = new LinkedList<>();
 
         Producto producto = new Producto();
@@ -78,7 +78,7 @@ public class ProductoServiceTest {
 
     @Test
     @DisplayName("Test para guardar un producto")
-    public void saveTest() {
+    void saveTest() {
         CreateProductoDTO createProductoDTO = new CreateProductoDTO();
 
         createProductoDTO.setNombre("Mancuerna 5 kg");
@@ -121,7 +121,7 @@ public class ProductoServiceTest {
 
     @Test
     @DisplayName("Test para actualizar un producto")
-    public void updateClientExists() {
+    void updateClientExists() {
         Producto producto = new Producto();
 
         producto.setId(1);
@@ -154,7 +154,7 @@ public class ProductoServiceTest {
 
     @Test
     @DisplayName("No se actualizará un cliente si no existe en la base de datos")
-    public void updateClientDoesNotExist() {
+    void updateClientDoesNotExist() {
         UpdateProductoDTO dto = new UpdateProductoDTO();
         Optional<Producto> dummy = Optional.empty();
 
@@ -165,7 +165,7 @@ public class ProductoServiceTest {
 
     @Test
     @DisplayName("Test para eliminar un cliente por su ID")
-    public void deleteTest() {
+    void deleteTest() {
         service.delete(4345L);
 
         verify(repository, times(1)).deleteById(4345L);

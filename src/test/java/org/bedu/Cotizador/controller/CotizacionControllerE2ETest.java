@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(CotizacionController.class)
-public class CotizacionControllerTest {
+class CotizacionControllerE2ETest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,7 +32,7 @@ public class CotizacionControllerTest {
     private CotizacionService cotizacionService;
 
     @Test
-    public void crearCotizacion_ReturnsCreatedStatus() throws Exception {
+    void crearCotizacion_ReturnsCreatedStatus() throws Exception {
         CreateCotizacionDTO createCotizacionDTO = new CreateCotizacionDTO();
         createCotizacionDTO.setClienteId(1L);
 
