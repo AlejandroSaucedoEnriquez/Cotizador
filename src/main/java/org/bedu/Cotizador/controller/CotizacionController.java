@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Slf4j
 @RestController
 @RequestMapping("/cotizaciones")
+@CrossOrigin("http://127.0.0.1:5500/")
 public class CotizacionController {
 
 

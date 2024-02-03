@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Endpoints de itemCotizacion", description = "Agregar varios productos a cotizacion")
 @RestController
 @RequestMapping("/api/item-cotizacion")
+@CrossOrigin("http://127.0.0.1:5500/")
 public class ItemCotizacionController {
 
         @Autowired
