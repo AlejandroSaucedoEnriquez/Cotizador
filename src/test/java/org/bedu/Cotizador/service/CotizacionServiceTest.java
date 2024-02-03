@@ -112,6 +112,7 @@ public class CotizacionServiceTest {
         System.out.println("Imprimir cotizacion : "+cotizacion);
 
         when(clienteRepository.findById(anyLong())).thenReturn(Optional.of(cliente));
+        when(repository.findById(anyLong())).thenReturn(Optional.of(cotizacion));
         when(repository.save(any(Cotizacion.class))).thenReturn(cotizacion);
 
         CotizacionDTO result = service.crearCotizacion(createCotizacionDTO);
