@@ -27,7 +27,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class ClienteServiceTest {
+class ClienteServiceTest {
 
     @MockBean
     private ClienteRepository repository;
@@ -43,7 +43,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Test para obtener la lista de clientes")
-    public void findAllTest() {
+    void findAllTest() {
         List<Cliente> clientes = new  LinkedList<>();
 
         Cliente cliente = new Cliente();
@@ -73,7 +73,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Test para guardar un cliente")
-    public void saveTest() {
+    void saveTest() {
         CreateClienteDTO createClienteDTO = new CreateClienteDTO();
 
         createClienteDTO.setNombre("Juan");
@@ -106,7 +106,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Test para actualizar un cliente")
-    public void updateClientExists() {
+    void updateClientExists() {
 
         long id = 1232L;
         Cliente cliente = new Cliente();
@@ -138,7 +138,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("No se actualizará un cliente si no existe en la base de datos")
-    public void updateClientDoesNotExist() {
+    void updateClientDoesNotExist() {
         UpdateClienteDTO dto = new UpdateClienteDTO();
         Optional<Cliente> dummy = Optional.empty();
 
@@ -149,7 +149,7 @@ public class ClienteServiceTest {
 
     @Test
     @DisplayName("Test para eliminar un cliente por su ID")
-    public void deleteTest() {
+    void deleteTest() {
         service.delete(38798l);
 
         verify(repository, times(1)).deleteById(38798l);

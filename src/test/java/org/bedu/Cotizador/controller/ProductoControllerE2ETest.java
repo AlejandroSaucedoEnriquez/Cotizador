@@ -25,8 +25,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ProductoController.class)
-public class ProductoControllerTest {
+@WebMvcTest(ProductoController.class) 
+class ProductoControllerE2ETest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,7 +38,7 @@ public class ProductoControllerTest {
     private ProductoService productoService;
 
     @Test
-    public void findAllProductos_ReturnsListOfProductos() throws Exception {
+    void findAllProductos_ReturnsListOfProductos() throws Exception {
         List<ProductoDTO> productos = new ArrayList<>();
         productos.add(new ProductoDTO());
         given(productoService.findAll()).willReturn(productos);
@@ -50,7 +50,7 @@ public class ProductoControllerTest {
     }
 
     @Test
-    public void saveProducto_ReturnsCreatedStatus() throws Exception {
+    void saveProducto_ReturnsCreatedStatus() throws Exception {
         CreateProductoDTO createProductoDTO = new CreateProductoDTO();
         createProductoDTO.setNombre("Mancuerna 5 kg");
         createProductoDTO.setSku("28394");
@@ -71,7 +71,7 @@ public class ProductoControllerTest {
     }
 
     @Test
-    public void updateProducto_ReturnsOkStatus() throws Exception {
+    void updateProducto_ReturnsOkStatus() throws Exception {
         long id = 1;
         UpdateProductoDTO updateProductoDTO = new UpdateProductoDTO();
         ProductoDTO productoDTO = new ProductoDTO();
@@ -84,7 +84,7 @@ public class ProductoControllerTest {
     }
 
     @Test
-    public void findById_ReturnsProducto() throws Exception {
+    void findById_ReturnsProducto() throws Exception {
         long id = 1;
         ProductoDTO productoDTO = new ProductoDTO();
         given(productoService.findById(id)).willReturn(productoDTO);
@@ -96,7 +96,7 @@ public class ProductoControllerTest {
     }
 
     @Test
-    public void deleteProducto_ReturnsNoContentStatus() throws Exception {
+    void deleteProducto_ReturnsNoContentStatus() throws Exception {
         long id = 1;
 
         mockMvc.perform(delete("/productos/{id}", id))
