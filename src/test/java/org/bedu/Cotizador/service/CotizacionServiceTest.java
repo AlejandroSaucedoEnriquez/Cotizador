@@ -92,7 +92,7 @@ public class CotizacionServiceTest {
         producto1.setSku("ManNeg001");
         producto1.setPrecio(new BigDecimal("500"));
         producto1.setStock(25);
-        producto1.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto1.setDescripcion("Mancuerna hexagonal negro de cinco kg");
         producto1.setCategoria("Accesorios");
         producto1.setMarca("Precor");
         producto1.setModelo("sg563");
@@ -177,7 +177,7 @@ public class CotizacionServiceTest {
         producto1.setSku("28394");
         producto1.setPrecio(new BigDecimal("500"));
         producto1.setStock(25);
-        producto1.setDescripcion("Mancuerna hexagoanl de cinco kg.");
+        producto1.setDescripcion("Mancuerna hexagonal negro de cinco kg");
         producto1.setCategoria("Accesorios");
         producto1.setMarca("Precor");
         producto1.setModelo("sg563");
@@ -193,7 +193,7 @@ public class CotizacionServiceTest {
         producto2.setSku("ManNeg002");
         producto2.setPrecio(new BigDecimal("650"));
         producto2.setStock(25);
-        producto2.setDescripcion("Mancuerna hexagoanl Negro de diez kg.");
+        producto2.setDescripcion("Mancuerna hexagonal negro de diez kg");
         producto2.setCategoria("Peso libre.");
         producto2.setMarca("Life fitness");
         producto2.setModelo("sg573");

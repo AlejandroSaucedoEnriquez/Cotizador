@@ -52,7 +52,7 @@ class ProductoServiceTest {
         producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setDescripcion("Mancuerna hexagonal negro de cinco kg");
         producto.setCategoria("Accesorios");
         producto.setMarca("Precor");
         producto.setModelo("sg563");
@@ -85,7 +85,7 @@ class ProductoServiceTest {
         createProductoDTO.setSku("ManNeg001");
         createProductoDTO.setPrecio(new BigDecimal("500"));
         createProductoDTO.setStock(25);
-        createProductoDTO.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        createProductoDTO.setDescripcion("Mancuerna hexagonal negro de cinco kg");
         createProductoDTO.setCategoria("Accesorios");
         createProductoDTO.setMarca("Precor");
         createProductoDTO.setModelo("sg563");
@@ -97,7 +97,7 @@ class ProductoServiceTest {
         producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setDescripcion("Mancuerna hexagonal negro de cinco kg");
         producto.setCategoria("Accesorios");
         producto.setMarca("Precor");
         producto.setModelo("sg563");
@@ -129,7 +129,7 @@ class ProductoServiceTest {
         producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setDescripcion("Mancuerna hexagonal negro de cinco kg");
         producto.setCategoria("Accesorios");
         producto.setMarca("Precor");
         producto.setModelo("sg563");

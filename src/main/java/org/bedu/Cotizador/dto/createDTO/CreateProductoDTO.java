@@ -23,7 +23,7 @@ public class CreateProductoDTO {
     @Schema(description = "Stock del producto", example = "10")
     @Positive (message = "El stock debe ser un número positivo")
     private int stock;
-    @Schema(description = "Descripcion del producto", example = "Mancuerna hexagonal negro de cinco kg.")
+    @Schema(description = "Descripcion del producto", example = "Mancuerna hexagonal negro de cinco kg")
     @Size (max = 150, message = "La descripción debe tener como máximo 150 caracteres")
     @NotBlank(message = "La descripción no puede estar en blanco")
     private String descripcion;

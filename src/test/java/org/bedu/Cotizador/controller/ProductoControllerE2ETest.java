@@ -56,7 +56,7 @@ class ProductoControllerE2ETest {
         createProductoDTO.setSku("ManNeg001");
         createProductoDTO.setPrecio(new BigDecimal("500"));
         createProductoDTO.setStock(25);
-        createProductoDTO.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        createProductoDTO.setDescripcion("Mancuerna hexagonal negro de cinco kg");
         createProductoDTO.setCategoria("Accesorios");
         createProductoDTO.setMarca("Precor");
         createProductoDTO.setModelo("sg563");
