@@ -1,9 +1,7 @@
 package org.bedu.Cotizador.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.bedu.Cotizador.dto.itemCotizacionDTO;
 import org.bedu.Cotizador.dto.productoDTO;
-import org.bedu.Cotizador.dto.createDTO.createCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.createItemCotizacionDTO;
 import org.bedu.Cotizador.mapper.itemCotizacionMapper;
 import org.bedu.Cotizador.model.cliente;
@@ -23,13 +21,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
