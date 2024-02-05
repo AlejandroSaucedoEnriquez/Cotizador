@@ -11,7 +11,7 @@ public class UpdateClienteDTO {
     private String nombre;
     @Schema(description = "Apellido del cliente", example = "Gonzalez Rivera")
     private String apellido;
-    @Schema(description = "Direccion del cliente", example = "Calzada Independencia 12")
+    @Schema(description = "Direccion del cliente", example = "Avenida Calzada Independencia #12")
     private String direccion;
     @Schema(description = "Correo electronico del cliente", example = "ejemplo@hotmail.com")
     @Email(message = "El formato del correo electrónico no es válido")

@@ -12,7 +12,7 @@ public class ClienteDTO {
     private String nombre;
     @Schema(description = "Apellido del cliente", example = "Chavez Ramos")
     private String apellido;
-    @Schema(description = "Direccion del cliente", example = "Av. Vallarta 1532")
+    @Schema(description = "Direccion del cliente", example = "Avenida Vallarta #1532")
     private String direccion;
     @Schema(description = "Correo electronico del cliente", example = "ejemplo@gmail.com")
     private String email;

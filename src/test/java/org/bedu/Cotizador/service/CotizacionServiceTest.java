@@ -88,13 +88,13 @@ public class CotizacionServiceTest {
         Producto producto1 = new Producto();
 
         producto1.setId(1L);
-        producto1.setNombre("Mancuerna 5 kg");
-        producto1.setSku("28394");
+        producto1.setNombre("Mancuerna Precor 5kg");
+        producto1.setSku("ManNeg001");
         producto1.setPrecio(new BigDecimal("500"));
         producto1.setStock(25);
-        producto1.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto1.setCategoria("Peso libre.");
-        producto1.setMarca("Tryman");
+        producto1.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto1.setCategoria("Accesorios");
+        producto1.setMarca("Precor");
         producto1.setModelo("sg563");
 
         List<CreateItemCotizacionDTO> createItemList = new ArrayList<>();
@@ -162,7 +162,7 @@ public class CotizacionServiceTest {
         cliente.setId(id);
         cliente.setNombre("Juan");
         cliente.setApellido("Peréz");
-        cliente.setDireccion("Av. Vallarta 1532");
+        cliente.setDireccion("Avenida Vallarta #1532");
         cliente.setEmail("juan@example.com");
         cliente.setTelefono("3315255110");
 
@@ -173,13 +173,13 @@ public class CotizacionServiceTest {
         Producto producto1 = new Producto();
 
         producto1.setId(1L);
-        producto1.setNombre("Mancuerna 5 kg");
+        producto1.setNombre("Mancuerna Precor 5 kg");
         producto1.setSku("28394");
         producto1.setPrecio(new BigDecimal("500"));
         producto1.setStock(25);
-        producto1.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto1.setCategoria("Peso libre.");
-        producto1.setMarca("Tryman");
+        producto1.setDescripcion("Mancuerna hexagoanl de cinco kg.");
+        producto1.setCategoria("Accesorios");
+        producto1.setMarca("Precor");
         producto1.setModelo("sg563");
 
         return producto1;
@@ -189,13 +189,13 @@ public class CotizacionServiceTest {
         Producto producto2 = new Producto();
 
         producto2.setId(2L);
-        producto2.setNombre("Mancuerna 10 kg");
-        producto2.setSku("4233");
+        producto2.setNombre("Mancuerna Life fitness 10 kg");
+        producto2.setSku("ManNeg002");
         producto2.setPrecio(new BigDecimal("650"));
         producto2.setStock(25);
-        producto2.setDescripcion("Mancuerna hexagoanl de 10 kg.");
+        producto2.setDescripcion("Mancuerna hexagoanl Negro de diez kg.");
         producto2.setCategoria("Peso libre.");
-        producto2.setMarca("Tryman");
+        producto2.setMarca("Life fitness");
         producto2.setModelo("sg573");
 
         return producto2;

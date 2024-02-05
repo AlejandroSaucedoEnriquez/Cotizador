@@ -51,7 +51,7 @@ class ClienteServiceTest {
         cliente.setId(1);
         cliente.setNombre("Juan");
         cliente.setApellido("Peréz");
-        cliente.setDireccion("Av. Vallarta 1532");
+        cliente.setDireccion("Avenida Vallarta #1532");
         cliente.setEmail("juan@example.com");
         cliente.setTelefono("3315255110");
 
@@ -78,7 +78,7 @@ class ClienteServiceTest {
 
         createClienteDTO.setNombre("Juan");
         createClienteDTO.setApellido("Peréz");
-        createClienteDTO.setDireccion("Av. Vallarta 1532");
+        createClienteDTO.setDireccion("Avenida Vallarta #1532");
         createClienteDTO.setEmail("juan@example.com");
         createClienteDTO.setTelefono("3315255110");
 
@@ -87,7 +87,7 @@ class ClienteServiceTest {
         cliente.setId(1);
         cliente.setNombre("Juan");
         cliente.setApellido("Peréz");
-        cliente.setDireccion("Av. Vallarta 1532");
+        cliente.setDireccion("Avenida Vallarta #1532");
         cliente.setEmail("juan@example.com");
         cliente.setTelefono("3315255110");
 
@@ -113,14 +113,14 @@ class ClienteServiceTest {
         cliente.setId(id);
         cliente.setNombre("Juan");
         cliente.setApellido("Peréz");
-        cliente.setDireccion("Av. Vallarta 1532");
+        cliente.setDireccion("Avenida Vallarta #1532");
         cliente.setEmail("juan@example.com");
         cliente.setTelefono("3315255110");
 
         UpdateClienteDTO data = new UpdateClienteDTO();
         data.setNombre("José");
         data.setApellido("Dominguez Peréz");
-        data.setDireccion("Av. Actualizada #2545");
+        data.setDireccion("Avenida Actualizada #2545");
         data.setEmail("josedmgz98@example.com");
         data.setTelefono("3315255444");
 

@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class UpdateProductoDTO {
     @Schema(description = "Nombre del producto", example = "Caminadora Precor P80")
     private String nombre;
-    @Schema(description = "Sku del producto", example = "01Camp80")
+    @Schema(description = "Sku del producto", example = "CamPla001")
     private String sku;
     @Schema(description = "Precio del producto", example = "20000")
     private BigDecimal precio;

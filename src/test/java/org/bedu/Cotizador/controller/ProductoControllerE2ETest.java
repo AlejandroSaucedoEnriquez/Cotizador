@@ -52,13 +52,13 @@ class ProductoControllerE2ETest {
     @Test
     void saveProducto_ReturnsCreatedStatus() throws Exception {
         CreateProductoDTO createProductoDTO = new CreateProductoDTO();
-        createProductoDTO.setNombre("Mancuerna 5 kg");
-        createProductoDTO.setSku("28394");
+        createProductoDTO.setNombre("Mancuerna Precor 5kg");
+        createProductoDTO.setSku("ManNeg001");
         createProductoDTO.setPrecio(new BigDecimal("500"));
         createProductoDTO.setStock(25);
-        createProductoDTO.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        createProductoDTO.setCategoria("Peso libre.");
-        createProductoDTO.setMarca("Tryman");
+        createProductoDTO.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        createProductoDTO.setCategoria("Accesorios");
+        createProductoDTO.setMarca("Precor");
         createProductoDTO.setModelo("sg563");
 
         ProductoDTO productoDTO = new ProductoDTO();

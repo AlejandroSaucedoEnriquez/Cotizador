@@ -83,13 +83,13 @@ class ItemCotizacionServiceTest {
         Producto producto = new Producto();
 
         producto.setId(1);
-        producto.setNombre("Mancuerna 5 kg");
-        producto.setSku("28394");
+        producto.setNombre("Mancuerna Precor 5 kg");
+        producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto.setCategoria("Peso libre.");
-        producto.setMarca("Tryman");
+        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setCategoria("Accesorios");
+        producto.setMarca("Precor");
         producto.setModelo("sg563");
 
         CreateItemCotizacionDTO createDTO = new CreateItemCotizacionDTO(producto.getId(), 5);
@@ -153,7 +153,7 @@ class ItemCotizacionServiceTest {
         cliente.setId(1);
         cliente.setNombre("Juan");
         cliente.setApellido("Peréz");
-        cliente.setDireccion("Av. Vallarta 1532");
+        cliente.setDireccion("Avenida Vallarta #1532");
         cliente.setEmail("juan@example.com");
         cliente.setTelefono("3315255110");
 
@@ -176,13 +176,13 @@ class ItemCotizacionServiceTest {
         Producto producto = new Producto();
 
         producto.setId(1);
-        producto.setNombre("Mancuerna 5 kg");
-        producto.setSku("28394");
+        producto.setNombre("Mancuerna Precor 5 kg");
+        producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto.setCategoria("Peso libre.");
-        producto.setMarca("Tryman");
+        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setCategoria("Accesorios");
+        producto.setMarca("Precor");
         producto.setModelo("sg563");
 
         ItemCotizacion newItem = new ItemCotizacion();

@@ -54,7 +54,7 @@ class ClienteControllerE2ETest {
         CreateClienteDTO createClienteDTO = new CreateClienteDTO();
         createClienteDTO.setNombre("Carlos");
         createClienteDTO.setApellido("Martinez");
-        createClienteDTO.setDireccion("Coyoacan");
+        createClienteDTO.setDireccion("Calle Coyoacan #12");
         createClienteDTO.setEmail("carlosm@example.com");
         createClienteDTO.setTelefono("5533221155");
 

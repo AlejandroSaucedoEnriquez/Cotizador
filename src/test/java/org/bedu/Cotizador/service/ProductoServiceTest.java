@@ -48,13 +48,13 @@ class ProductoServiceTest {
         Producto producto = new Producto();
 
         producto.setId(1);
-        producto.setNombre("Mancuerna 5 kg");
-        producto.setSku("28394");
+        producto.setNombre("Mancuerna Precor 5 kg");
+        producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto.setCategoria("Peso libre.");
-        producto.setMarca("Tryman");
+        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setCategoria("Accesorios");
+        producto.setMarca("Precor");
         producto.setModelo("sg563");
 
         productos.add(producto);
@@ -81,25 +81,25 @@ class ProductoServiceTest {
     void saveTest() {
         CreateProductoDTO createProductoDTO = new CreateProductoDTO();
 
-        createProductoDTO.setNombre("Mancuerna 5 kg");
-        createProductoDTO.setSku("28394");
+        createProductoDTO.setNombre("Mancuerna Precor 5 kg");
+        createProductoDTO.setSku("ManNeg001");
         createProductoDTO.setPrecio(new BigDecimal("500"));
         createProductoDTO.setStock(25);
-        createProductoDTO.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        createProductoDTO.setCategoria("Peso libre.");
-        createProductoDTO.setMarca("Tryman");
+        createProductoDTO.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        createProductoDTO.setCategoria("Accesorios");
+        createProductoDTO.setMarca("Precor");
         createProductoDTO.setModelo("sg563");
 
         Producto producto = new Producto();
 
         producto.setId(1);
-        producto.setNombre("Mancuerna 5 kg");
-        producto.setSku("28394");
+        producto.setNombre("Mancuerna Precor 5 kg");
+        producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto.setCategoria("Peso libre.");
-        producto.setMarca("Tryman");
+        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setCategoria("Accesorios");
+        producto.setMarca("Precor");
         producto.setModelo("sg563");
 
         when(repository.save(any(Producto.class))).thenReturn(producto);
@@ -125,20 +125,20 @@ class ProductoServiceTest {
         Producto producto = new Producto();
 
         producto.setId(1);
-        producto.setNombre("Mancuerna 5 kg");
-        producto.setSku("28394");
+        producto.setNombre("Mancuerna Precor 5 kg");
+        producto.setSku("ManNeg001");
         producto.setPrecio(new BigDecimal("500"));
         producto.setStock(25);
-        producto.setDescripcion("Mancuerna hexagoanl de 5 kg.");
-        producto.setCategoria("Peso libre.");
-        producto.setMarca("Tryman");
+        producto.setDescripcion("Mancuerna hexagoanl negro de cinco kg.");
+        producto.setCategoria("Accesorios");
+        producto.setMarca("Precor");
         producto.setModelo("sg563");
 
         UpdateProductoDTO update = new UpdateProductoDTO();
 
-        update.setNombre("Mancuerna redonda 5 kg");
+        update.setNombre("Mancuerna life fitness 5 kg");
         update.setPrecio(new BigDecimal("459"));
-        update.setDescripcion("Mancuerna redonda de 5 kg");
+        update.setDescripcion("Mancuerna redonda gris de cinco kg");
         update.setStock(50);
 
         when(repository.findById(anyLong())).thenReturn(Optional.of(producto));
