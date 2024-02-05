@@ -3,16 +3,16 @@ El motivo de este proyecto es crear una API que pueda utilizarse para almacenar 
 
 <h1 align="center">
   <br>
-    <img align="left"  width="200" src="https://github.com/AlejandroSaucedoEnriquez/Cotizador/blob/main/Images/Cotizador-Cliente.png">
+    <img align="left"  width="500" src="https://github.com/AlejandroSaucedoEnriquez/Cotizador/blob/main/Images/Cotizador-Cliente.png">
   <br>
-  Cotizador para venta de equipos de gimnasio
+  Cotizador venta de equipos para gimnasios
   <br>
 </h1>
 
-<h4 align="center">Una aplicación Java mínima para Cotizar equipos de gimnasio con una interfaz de usuario increíble elaborada con Spring Boot</h4>
+<h4 align="center">Una aplicación Java mínima para Cotizar equipos para gimnasios con una interfaz de usuario increíble elaborada con Spring Boot</h4>
 
 # Descripción básica
-La aplicación Cotizador para venta de equipos de gimnasio es lo que dice el título. Es una aplicación rápida y sencilla. Las funciones incluyen lo básico, incluidos registro de cliente, registro de producto, itemcotizador y más. Aparte de eso, en realidad no es tan complicado. Se puede descargar gratis sin compras dentro de la aplicación y el código fuente está disponible.
+La aplicación Cotizador venta de equipos para gimnasios es lo que dice el título. Es una aplicación rápida y sencilla. Las funciones incluyen lo básico, incluidos registro de cliente, registro de producto, itemcotizador y más. Aparte de eso, en realidad no es tan complicado. Se puede descargar gratis sin compras dentro de la aplicación y el código fuente está disponible.
 
 La aplicación Cotizador tiene validaciones  y permite hacer un buen registro. Es una buena opción para los momentos en los que solo necesita cotizar de forma rapida en el momento que el cliente lo solicita. Esta aplicación del cotizador tiene una gran cantidad de actualizaciones desde su lanzamiento, con algunas características nuevas agregadas. 
 
