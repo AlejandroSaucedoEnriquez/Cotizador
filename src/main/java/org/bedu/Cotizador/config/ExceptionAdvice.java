@@ -1,7 +1,7 @@
 package org.bedu.Cotizador.config;
 
-import org.bedu.Cotizador.dto.ErrorDTO;
-import org.bedu.Cotizador.exception.RuntimeException;
+import org.bedu.Cotizador.dto.errorDTO;
+import org.bedu.Cotizador.exception.runtimeException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,20 +15,20 @@ import java.util.List;
 public class ExceptionAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorDTO validationError(MethodArgumentNotValidException ex) {
+    public errorDTO validationError(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         List<String> errors = fieldErrors.stream().map(x -> x.getDefaultMessage()).toList();
-        return new ErrorDTO("ERR_VALID", "Hubo un error al procesar los datos de entrada", errors);
+        return new errorDTO("ERR_VALID", "Hubo un error al procesar los datos de entrada", errors);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ErrorDTO applicationError(RuntimeException ex) {
-        return new ErrorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
+    @ExceptionHandler(runtimeException.class)
+    public errorDTO applicationError(runtimeException ex) {
+        return new errorDTO(ex.getCode(), ex.getMessage(), ex.getDetails());
     }
 
     @ExceptionHandler(Exception.class)
-    public ErrorDTO unknownError(Exception ex) {
+    public errorDTO unknownError(Exception ex) {
         log.error(ex.getMessage());
-        return new ErrorDTO("ERR_EXC", "Ocurrió un error inesperado", "No existen datos cliente o producto");
+        return new errorDTO("ERR_EXC", "Ocurrió un error inesperado", "No existen datos cliente o producto");
     }
 }
