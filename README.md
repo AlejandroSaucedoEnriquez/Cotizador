@@ -3,7 +3,7 @@ El motivo de este proyecto es crear una API que pueda utilizarse para almacenar 
 
 <h1 align="center">
   <br>
-    <img align="left"  width="200" src="https://github.com/AlejandroSaucedoEnriquez/Cotizador/Images/Cotizador-Cliente.png">
+    <img align="left"  width="200" src="https://github.com/AlejandroSaucedoEnriquez/Cotizador/blob/main/Images/Cotizador-Cliente.png">
   <br>
   Cotizador para venta de equipos de gimnasio
   <br>
