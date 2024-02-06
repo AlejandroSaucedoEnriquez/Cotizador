@@ -71,7 +71,7 @@ class itemCotizacionServiceTest {
         Optional<producto> dummy = Optional.empty();
         when(productoRepository.findById(anyLong())).thenReturn(dummy);
 
-        assertThrows(EntityNotFoundException.class, () -> service.addItemCotizacion(createDTO, cotizacion.getId()));
+        assertThrows(EntityNotFoundException.class, () -> service.addItemCotizacion(createDTO, 1L));
     }
 
     @Test
