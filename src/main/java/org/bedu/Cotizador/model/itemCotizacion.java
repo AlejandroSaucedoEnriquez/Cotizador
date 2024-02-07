@@ -18,11 +18,11 @@ public class itemCotizacion {
 
     @ManyToOne
     @JoinColumn(name = "cotizacion_id", nullable = false)
-    private org.bedu.Cotizador.model.cotizacion cotizacion;
+    private Cotizacion cotizacion;
 
     @ManyToOne
     @JoinColumn(name = "producto_id", nullable = false)
-    private org.bedu.Cotizador.model.producto producto;
+    private Producto producto;
 
     @Column(nullable = false)
     private int cantidad;
@@ -37,7 +37,7 @@ public class itemCotizacion {
     public String toString() {
         return "itemCotizacion{" +
                 "id=" + id +
-                ", producto=" + producto +
+                ", Producto=" + producto +
                 ", cantidad=" + cantidad +
                 ", precioUnitario=" + precioUnitario +
                 ", subtotal=" + subtotal +
