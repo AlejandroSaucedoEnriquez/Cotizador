@@ -37,5 +37,5 @@ public class Producto {
     private String modelo;
 
     @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private itemCotizacion itemCotizacion;
+    private ItemCotizacion itemCotizacion;
 }

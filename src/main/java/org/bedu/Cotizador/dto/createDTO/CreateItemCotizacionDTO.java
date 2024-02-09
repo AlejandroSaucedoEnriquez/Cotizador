@@ -16,4 +16,5 @@ public class CreateItemCotizacionDTO {
     private Long productoId;
     @Schema(description = "Cantidad de productos para la Cotizacion", example = "2")
     private int cantidad;
+
 }

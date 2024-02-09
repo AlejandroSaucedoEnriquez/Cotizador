@@ -24,7 +24,7 @@ public class Cotizacion {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "cotizacion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<itemCotizacion> items;
+    private List<ItemCotizacion> items;
 
     @Column(nullable = false)
     private LocalDate fecha; // Fecha de la cotización

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @Table(name = "items_cotizacion")
-public class itemCotizacion {
+public class ItemCotizacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -35,7 +35,7 @@ public class itemCotizacion {
 
     @Override
     public String toString() {
-        return "itemCotizacion{" +
+        return "ItemCotizacion{" +
                 "id=" + id +
                 ", Producto=" + producto +
                 ", cantidad=" + cantidad +

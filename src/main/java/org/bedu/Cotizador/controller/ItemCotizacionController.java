@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Endpoints de itemCotizacion", description = "Agregar varios productos a Cotizacion")
+@Tag(name = "Endpoints de ItemCotizacion", description = "Agregar varios productos a Cotizacion")
 @RestController
 @RequestMapping("/api/item-Cotizacion")
 @CrossOrigin("http://127.0.0.1:5500/")
