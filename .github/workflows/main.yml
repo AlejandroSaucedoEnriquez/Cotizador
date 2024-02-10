@@ -4,15 +4,13 @@ name: Cotizador CI
 # utilizando un entorno Ubuntu
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
-
+  continuous-integration:
     runs-on: ubuntu-latest
-
     steps:
       # Obtiene una copia del repositorio
     - uses: actions/checkout@v4
@@ -23,15 +21,8 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
-    - name: Da permisos de ejecución a gradlew
-      run: chmod +x gradlew
+    - name: Configuración Gradle
+      uses: gradle/gradle-build-action@v2
 
-    - name: Construye la aplicación con gradle
-      run: ./gradlew build
-
-    - name: Se inicia la aplicación
-      run: ./gradlew bootRun &
-      shell: bash
-      
-    - name: Realiza las pruebas
-      run: ./gradlew test
+    - name: Compila el proyecto
+      run: gradle build

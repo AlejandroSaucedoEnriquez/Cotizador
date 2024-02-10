@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -41,8 +42,8 @@ public class CotizacionService {
         return cotizacionMapper.toDTO(cotizacion);
     }
 
-    public Cotizacion crearCotizacionBase(CreateCotizacionDTO createItemCotizacionDTO) {
-        Cotizacion cotizacion = cotizacionMapper.toModel(createItemCotizacionDTO);
+    public Cotizacion crearCotizacionBase(CreateCotizacionDTO createCotizacionDTO) {
+        Cotizacion cotizacion = cotizacionMapper.toModel(createCotizacionDTO);
         cotizacion.setItems(new ArrayList<>());
         return cotizacionRepository.saveAndFlush(cotizacion);
     }
@@ -59,5 +60,19 @@ public class CotizacionService {
     private void actualizarCotizacionConTotal(Cotizacion cotizacion, BigDecimal total) {
         cotizacion.setTotal(total);
         cotizacionRepository.save(cotizacion);
+    }
+
+    public Cotizacion findById(Long cotizacionId) {
+        Optional<Cotizacion> optionalCotizacion = cotizacionRepository.findById(cotizacionId);
+
+        if (optionalCotizacion.isPresent()) {
+            return optionalCotizacion.get();
+        } else {
+            throw new IllegalArgumentException("Cotización no encontrada con ID: " + cotizacionId);
+        }
+    }
+
+    public Cotizacion saveCotizacionEntity (Cotizacion cotizacion){
+        return cotizacionRepository.save(cotizacion);
     }
 }
