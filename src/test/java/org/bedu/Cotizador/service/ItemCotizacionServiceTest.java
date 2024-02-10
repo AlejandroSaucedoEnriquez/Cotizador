@@ -5,8 +5,8 @@ import org.bedu.Cotizador.dto.ItemCotizacionDTO;
 import org.bedu.Cotizador.dto.createDTO.CreateItemCotizacionDTO;
 import org.bedu.Cotizador.model.Cliente;
 import org.bedu.Cotizador.model.Cotizacion;
+import org.bedu.Cotizador.model.ItemCotizacion;
 import org.bedu.Cotizador.model.Producto;
-import org.bedu.Cotizador.model.itemCotizacion;
 import org.bedu.Cotizador.repository.CotizacionRepository;
 import org.bedu.Cotizador.repository.ItemCotizacionRepository;
 import org.bedu.Cotizador.repository.ProductoRepository;
@@ -96,7 +96,7 @@ class ItemCotizacionServiceTest {
 
         Cotizacion cotizacion = createEmptyCotizacion();
 
-        itemCotizacion newItem = new itemCotizacion();
+        ItemCotizacion newItem = new ItemCotizacion();
 
         newItem.setId(1);
         newItem.setCotizacion(cotizacion);
@@ -107,7 +107,7 @@ class ItemCotizacionServiceTest {
 
         when(cotizacionRepository.findById(anyLong())).thenReturn(Optional.of(cotizacion));
         when(productoRepository.findById(anyLong())).thenReturn(Optional.of(producto));
-        when(itemCotizacionRepository.save(any(itemCotizacion.class))).thenReturn(newItem);
+        when(itemCotizacionRepository.save(any(ItemCotizacion.class))).thenReturn(newItem);
 
         ItemCotizacionDTO dto = service.addItemCotizacion(createDTO, 1L);
 
@@ -135,7 +135,7 @@ class ItemCotizacionServiceTest {
 
         when(cotizacionRepository.findById(anyLong())).thenReturn(Optional.of(cotizacion));
         when(productoRepository.findById(anyLong())).thenReturn(Optional.of(cotizacion.getItems().get(0).getProducto()));
-        when(itemCotizacionRepository.save(any(itemCotizacion.class))).thenReturn(cotizacion.getItems().get(0));
+        when(itemCotizacionRepository.save(any(ItemCotizacion.class))).thenReturn(cotizacion.getItems().get(0));
 
         ItemCotizacionDTO dto = service.addItemCotizacion(updateItem, 1L);
 
@@ -159,7 +159,7 @@ class ItemCotizacionServiceTest {
 
         Cotizacion cotizacion = new Cotizacion();
 
-        ArrayList<itemCotizacion> itemList =new ArrayList<>();
+        ArrayList<ItemCotizacion> itemList =new ArrayList<>();
 
         cotizacion.setId(1);
         cotizacion.setCliente(cliente);
@@ -185,7 +185,7 @@ class ItemCotizacionServiceTest {
         producto.setMarca("Precor");
         producto.setModelo("sg563");
 
-        itemCotizacion newItem = new itemCotizacion();
+        ItemCotizacion newItem = new ItemCotizacion();
         newItem.setId(1);
         newItem.setCotizacion(cotizacion);
         newItem.setProducto(producto);
