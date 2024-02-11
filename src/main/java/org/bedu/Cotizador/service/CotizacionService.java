@@ -42,6 +42,11 @@ public class CotizacionService {
         return cotizacionMapper.toDTO(cotizacion);
     }
 
+    public CotizacionDTO obtenerCotizacionDTO(Long cotizacionId) {
+        Cotizacion cotizacion = findById(cotizacionId);
+        return cotizacionMapper.toDTO(cotizacion);
+    }
+
     public Cotizacion crearCotizacionBase(CreateCotizacionDTO createCotizacionDTO) {
         Cotizacion cotizacion = cotizacionMapper.toModel(createCotizacionDTO);
         cotizacion.setItems(new ArrayList<>());

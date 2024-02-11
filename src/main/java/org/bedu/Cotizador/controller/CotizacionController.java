@@ -36,4 +36,11 @@ public class CotizacionController {
         log.info(data.toString());
         return service.crearCotizacion(data);
     }
+
+    @Operation(summary = "Obtener cotizacion por id")
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CotizacionDTO obtenerCotizacion(@PathVariable Long id) {
+        return service.obtenerCotizacionDTO(id);
+    }
 }
