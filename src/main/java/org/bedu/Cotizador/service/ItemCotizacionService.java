@@ -26,9 +26,7 @@ public class ItemCotizacionService {
 
     private final ItemCotizacionRepository itemCotizacionRepository;
 
-
     private final ProductoRepository productoRepository;
-
 
     private final CotizacionRepository cotizacionRepository;
 
