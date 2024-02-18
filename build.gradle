@@ -46,6 +46,10 @@ dependencies {
 	testImplementation 'org.mockito:mockito-core:5.9.0'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '8.4' // Especifica la versión de Gradle que deseas usar
+}
+
 tasks.named('test') {
 	outputs.dir snippetsDir
 	useJUnitPlatform()
