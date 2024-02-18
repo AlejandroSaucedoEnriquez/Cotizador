@@ -47,7 +47,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '8.4' // Especifica la versión de Gradle que deseas usar
+    gradleVersion = '8.3' // Especifica la versión de Gradle que deseas usar
 }
 
 tasks.named('test') {
